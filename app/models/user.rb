@@ -25,6 +25,8 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
+    has_secure_password
+
     has_many :questions,
         foreign_key: :author_id,
         class_name: :Question,
@@ -40,23 +42,18 @@ class User < ApplicationRecord
         class_name: :Vote,
         dependent: :destroy
 
-    def self.find_by_credentials(username, password)
-        user = User.find_by(username: username)
-        if user&.is_password?(password)
+    def self.find_by_credentials(credential, password)
+        if (URI::MailTo::EMAIL_REGEXP.match(credential))
+            user = User.find_by(email: credential)
+        else
+            user = User.find_by(username: credential)
+        end
+
+        if user&.authenticate(password)
             return user
         else
             return nil
         end
-    end
-
-    def password=(password)
-        @password = password
-        self.password_digest = BCrypt::Password.create(password)
-    end
-
-    def is_password?(password)
-        bcrypt_object = BCrypt::Password.new(self.password_digest)
-        bcrypt_object.is_password?(password)
     end
 
     def reset_session_token!
