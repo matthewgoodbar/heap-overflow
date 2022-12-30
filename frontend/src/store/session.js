@@ -3,12 +3,12 @@ import csrfFetch, { storeCSRFToken } from './csrf';
 const SET_CURRENT_USER = 'session/SET_CURRENT_USER';
 const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER';
 
-const setCurrentUser = (user) => ({
+export const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
     user
 });
 
-const removeCurrentUser = () => ({
+export const removeCurrentUser = () => ({
     type: REMOVE_CURRENT_USER
 });
 
