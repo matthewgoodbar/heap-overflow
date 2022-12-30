@@ -29,7 +29,7 @@ export const login = (user) => async dispatch => {
 
 export const signup = (user) => async dispatch => {
     const { email, username, password } = user;
-    const res = await csrfFetch('api/users', {
+    const res = await csrfFetch('/api/users', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -40,6 +40,15 @@ export const signup = (user) => async dispatch => {
     const data = await res.json();
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
+    return res;
+};
+
+export const logout = () => async dispatch => {
+    const res = await csrfFetch('/api/session', {
+        method: 'DELETE'
+    });
+    storeCurrentUser(null);
+    dispatch(removeCurrentUser());
     return res;
 };
 
