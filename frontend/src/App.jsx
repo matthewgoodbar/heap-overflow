@@ -8,14 +8,16 @@ const App = props => {
   return (
     <>
       <Navigation />
-      <Switch>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/signup">
-          <SignupForm />
-        </Route>
-      </Switch>
+      <div id="page-content">
+        <Switch>
+          <Route path="/login">
+            <LoginForm />
+          </Route>
+          <Route path="/signup">
+            <SignupForm />
+          </Route>
+        </Switch>
+      </div>
     </>
   );
 }

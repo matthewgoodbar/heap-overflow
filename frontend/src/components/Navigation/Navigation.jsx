@@ -29,10 +29,15 @@ const Navigation = props => {
     }
     
     return (
-        <header id="header-bar">
-            <h1>Welcome to Heap Overflow!</h1>
-            {sessionLinks}
-        </header>
+        <>
+            {/* <div id="color-accent"></div> */}
+            <header>
+                <div id="navigation">
+                    <h1>Welcome to Heap Overflow!</h1>
+                    {sessionLinks}
+                </div>
+            </header>
+        </>
     );
 };
 
