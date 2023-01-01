@@ -30,10 +30,9 @@ const Navigation = props => {
     
     return (
         <>
-            {/* <div id="color-accent"></div> */}
             <header>
                 <div id="navigation">
-                    <h1>Welcome to Heap Overflow!</h1>
+                    <NavLink to="/"><div id="logo">heap<strong>overflow</strong></div></NavLink>
                     {sessionLinks}
                 </div>
             </header>

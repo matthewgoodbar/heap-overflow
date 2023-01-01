@@ -36,7 +36,7 @@ const LoginForm = props => {
     };
 
     return (
-        <>
+        <div id="login-form">
         <form onSubmit={handleSubmit}>
             {errors.length > 0 && 
             <>
@@ -64,7 +64,7 @@ const LoginForm = props => {
             <br/>
             <button type="submit">Log In</button>
         </form>
-        </>
+        </div>
     );
 };
 

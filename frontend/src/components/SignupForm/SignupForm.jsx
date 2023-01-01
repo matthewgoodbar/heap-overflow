@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 
 const SignupForm = props => {
 
@@ -36,51 +36,55 @@ const SignupForm = props => {
     };
     
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            {errors.length > 0 && 
-            <>
-            <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-            <br/>
-            </>
-            }
-            <label>Username <br/>
-                <input 
-                type="text" 
-                value={username} 
-                onChange={e => setUsername(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <label>Email <br/>
-                <input 
-                type="text" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <label>Password <br/>
-                <input 
-                type="password" 
-                value={password} 
-                onChange={e => setPassword(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <label>Confirm Password <br/>
-                <input 
-                type="password" 
-                value={confirmPassword} 
-                onChange={e => setConfirmPassword(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <button type="submit">Sign Up</button>
-        </form>
-        </>
+        <div id="signup-form-container">
+            <div id="signup-form">
+                <h2>Sign Up</h2>
+                <form onSubmit={handleSubmit}>
+                    {errors.length > 0 && 
+                    <>
+                    <ul>
+                        {errors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
+                    <br/>
+                    </>
+                    }
+                    <label>Username <br/>
+                        <input 
+                        type="text" 
+                        value={username} 
+                        onChange={e => setUsername(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <label>Email <br/>
+                        <input 
+                        type="text" 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <label>Password <br/>
+                        <input 
+                        type="password" 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <label>Confirm Password <br/>
+                        <input 
+                        type="password" 
+                        value={confirmPassword} 
+                        onChange={e => setConfirmPassword(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <p>Already have an account? <NavLink to="/login">Log In</NavLink></p>
+        </div>
     );
 };
 
