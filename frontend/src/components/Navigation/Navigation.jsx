@@ -11,19 +11,24 @@ const Navigation = props => {
         dispatch(sessionActions.logout());
     };
 
+    const handleDemoLogin = e => {
+
+    };
+
     let sessionLinks;
     if (currentUser) {
         sessionLinks = (
-            <div>
-                <p>Welcome, {currentUser.username}</p>
-                <button onClick={handleLogOut}>Log Out</button>
-            </div>
+            <ul id="account-buttons">
+                <li><p className="button-light">Account</p></li>
+                {/* <button onClick={handleLogOut}>Log Out</button> */}
+                <li><p className="button-dark" onClick={handleLogOut}>Log Out</p></li>
+            </ul>
         );
     } else {
         sessionLinks = (
-            <ul>
-                <li><NavLink to='/login'>Log In</NavLink></li>
-                <li><NavLink to='/signup'>Sign Up</NavLink></li>
+            <ul id="account-buttons">
+                <li><NavLink to='/login' className="button-light">Log In</NavLink></li>
+                <li><NavLink to='/signup' className="button-dark">Sign Up</NavLink></li>
             </ul>
         );
     }
@@ -32,7 +37,7 @@ const Navigation = props => {
         <>
             <header>
                 <div id="navigation">
-                    <NavLink to="/"><div id="logo">heap<strong>overflow</strong></div></NavLink>
+                    <NavLink to="/" id="logo">heap<span id="logo-bold">overflow</span></NavLink>
                     {sessionLinks}
                 </div>
             </header>

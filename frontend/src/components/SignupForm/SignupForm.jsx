@@ -40,14 +40,6 @@ const SignupForm = props => {
             <div id="signup-form">
                 <h2>Sign Up</h2>
                 <form onSubmit={handleSubmit}>
-                    {errors.length > 0 && 
-                    <>
-                    <ul>
-                        {errors.map(error => <li key={error}>{error}</li>)}
-                    </ul>
-                    <br/>
-                    </>
-                    }
                     <label>Username <br/>
                         <input 
                         type="text" 
@@ -83,6 +75,14 @@ const SignupForm = props => {
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
+            {errors.length > 0 && 
+                <>
+                    <ul id="error-list">
+                        {errors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
+                    <br/>
+                </>
+            }
             <p>Already have an account? <NavLink to="/login">Log In</NavLink></p>
         </div>
     );

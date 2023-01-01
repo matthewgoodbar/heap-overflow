@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 const LoginForm = props => {
 
@@ -36,34 +36,38 @@ const LoginForm = props => {
     };
 
     return (
-        <div id="login-form">
-        <form onSubmit={handleSubmit}>
+        <div id="login-form-container">
+            <div id="login-form">
+                <h2>Log In</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>Username or Email <br/>
+                        <input 
+                        type="text" 
+                        value={credential} 
+                        onChange={e => setCredential(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <label>Password <br/>
+                        <input 
+                        type="password" 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        required />
+                    </label>
+                    <br/>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
             {errors.length > 0 && 
-            <>
-            <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-            <br/>
-            </>
+                <>
+                    <ul id="error-list">
+                        {errors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
+                    <br/>
+                </>
             }
-            <label>Username or Email <br/>
-                <input 
-                type="text" 
-                value={credential} 
-                onChange={e => setCredential(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <label>Password <br/>
-                <input 
-                type="password" 
-                value={password} 
-                onChange={e => setPassword(e.target.value)} 
-                required />
-            </label>
-            <br/>
-            <button type="submit">Log In</button>
-        </form>
+            <p>Don't have an account? <NavLink to="/signup">Sign Up</NavLink></p>
         </div>
     );
 };
