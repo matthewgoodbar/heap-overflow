@@ -10,4 +10,15 @@
 #  updated_at :datetime         not null
 #
 class Vote < ApplicationRecord
+    validates :voter_id, :answer_id, presence: true
+    validates :voter_id, uniqueness: {scope: :answer_id}
+    validates :vote_type, inclusion: {in: ["up", "down"]}
+
+    belongs_to :voter,
+        foreign_key: :voter_id,
+        class_name: :User
+    
+    belongs_to :answer,
+        foreign_key: :answer_id,
+        class_name: :Answer
 end

@@ -10,4 +10,15 @@
 #  updated_at :datetime         not null
 #
 class Question < ApplicationRecord
+    validates :author_id, :body, presence: true
+    validates :title, uniqueness: true, length: {in: 3..100}
+
+    has_many :answers,
+        foreign_key: :question_id,
+        class_name: :Answer,
+        dependent: :destroy
+    
+    belongs_to :author,
+        foreign_key: :author_id,
+        class_name: :User
 end
