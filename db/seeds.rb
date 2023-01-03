@@ -1,12 +1,14 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
+    Question.destroy_all
     User.destroy_all
   
     puts "Resetting primary keys..."
+    ApplicationRecord.connection.reset_pk_sequence!('questions')
     ApplicationRecord.connection.reset_pk_sequence!('users')
   
     puts "Creating users..."
-    # Create one user with an easy to remember username, email, and password:
+    # Create demo user:
     User.create!(
       username: 'demo', 
       email: 'demo@heap-overflow.com', 
@@ -20,6 +22,15 @@ ApplicationRecord.transaction do
         email: Faker::Internet.unique.email,
         password: 'password'
       }) 
+    end
+
+    puts "Creating questions..."
+    40.times do
+      Question.create!({
+        author_id: User.order(Arel.sql('RANDOM()')).first.id,
+        title: Faker::Lorem.question(word_count: 5),
+        body: Faker::Lorem.paragraphs(number: 4)
+      })
     end
   
     puts "Done!"
