@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Splash from "./components/Splash";
+import NotFound from "./components/NotFound";
 import LoginForm from "./components/LoginForm";
 import Navigation from "./components/Navigation";
 import SignupForm from "./components/SignupForm";
@@ -19,6 +20,9 @@ const App = props => {
           </Route>
           <Route path="/signup">
             <SignupForm />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>

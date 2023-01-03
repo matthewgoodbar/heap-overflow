@@ -5,3 +5,23 @@
     justify-content: center;
     align-items: center;
 }
+
+.button-light {
+    margin: 0px 2px 0px 2px;
+    padding: 8px 10.4px 8px 10.4px;
+    background-color: rgb(225, 236, 244);
+    color: rgb(57, 115, 157);
+    border: solid rgb(122, 167, 199) 1px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-dark {
+    margin: 0px 2px 0px 2px;
+    padding: 8px 10.4px 8px 10.4px;
+    background-color: rgb(10, 149, 255);
+    color: rgb(255, 255, 255);
+    border: solid rgb(200, 200, 200) 1px;
+    text-decoration: none;
+    cursor: pointer;
+}
