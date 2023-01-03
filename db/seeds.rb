@@ -29,7 +29,7 @@ ApplicationRecord.transaction do
       Question.create!({
         author_id: User.order(Arel.sql('RANDOM()')).first.id,
         title: Faker::Lorem.question(word_count: 5),
-        body: Faker::Lorem.paragraphs(number: 4)
+        body: Faker::Lorem.paragraph(sentence_count: 14, random_sentences_to_add: 10)
       })
     end
   
