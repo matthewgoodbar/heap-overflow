@@ -1,4 +1,5 @@
 #logo {
+    margin-right: 12px;
     font-size: 24px;
     text-decoration: none;
     color: inherit;
@@ -40,22 +41,27 @@ header {
     display: flex;
 }
 
-/* .button-light {
-    margin: 0px 2px 0px 2px;
-    padding: 8px 10.4px 8px 10.4px;
-    background-color: rgb(225, 236, 244);
+#about-button {
+    font-size: 12px;
+    margin-right: 12px;
+    padding: 4px 4px 4px 4px;
     color: rgb(57, 115, 157);
-    border: solid rgb(122, 167, 199) 1px;
+    border-radius: 8px;
     text-decoration: none;
     cursor: pointer;
 }
 
-.button-dark {
-    margin: 0px 2px 0px 2px;
-    padding: 8px 10.4px 8px 10.4px;
-    background-color: rgb(10, 149, 255);
-    color: rgb(255, 255, 255);
-    border: solid rgb(200, 200, 200) 1px;
-    text-decoration: none;
-    cursor: pointer;
-} */
+#about-button:hover {
+    background-color: rgb(225, 236, 244);
+}
+
+#search {
+    margin-right: 12px;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 10000;
+}
+
+#search > input {
+    width: 100%;
+}
