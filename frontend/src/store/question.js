@@ -28,7 +28,7 @@ export const fetchQuestions = () => async dispatch => {
 export const fetchQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`);
     const data = await res.json();
-    dispatch(addQuestion(data));
+    dispatch(addQuestion(data.question));
 };
 
 export const createQuestion = (question) => async dispatch => {
@@ -37,7 +37,7 @@ export const createQuestion = (question) => async dispatch => {
         body: JSON.stringify(question)
     });
     const data = await res.json();
-    dispatch(addQuestion(data));
+    dispatch(addQuestion(data.question));
 };
 
 export const updateQuestion = (question) => async dispatch => {
@@ -46,7 +46,7 @@ export const updateQuestion = (question) => async dispatch => {
         body: JSON.stringify(question)
     });
     const data = await res.json();
-    dispatch(addQuestion(data));
+    dispatch(addQuestion(data.question));
 };
 
 export const deleteQuestion = (questionId) => async dispatch => {

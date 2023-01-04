@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+h1 {
+    font-size: 24px;
+}
+
 .button-light {
     margin: 0px 2px 0px 2px;
     padding: 8px 10.4px 8px 10.4px;
@@ -24,4 +28,9 @@
     border: solid rgb(200, 200, 200) 1px;
     text-decoration: none;
     cursor: pointer;
+}
+
+.component-standard {
+    width: 1264px;
+    line-height: 1.6;
 }
