@@ -3,7 +3,10 @@ class Api::QuestionsController < ApplicationController
     before_action :require_logged_in, only: [:create, :update, :destroy]
     
     def index
-        @questions = Question.all
+        items_per_page = 10
+        @page = params[:page].to_i
+        # @questions = Question.all
+        @questions = Question.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (@page - 1))
         if @questions
             render :index
         else

@@ -19,8 +19,9 @@ export const removeQuestion = (questionId) => ({
     questionId
 });
 
-export const fetchQuestions = () => async dispatch => {
-    const res = await csrfFetch('/api/questions');
+export const fetchQuestions = (pageNumber) => async dispatch => {
+    pageNumber ||= 1;
+    const res = await csrfFetch(`/api/questions/?page=${pageNumber}`);
     const data = await res.json();
     dispatch(addQuestions(data.questions));
 };

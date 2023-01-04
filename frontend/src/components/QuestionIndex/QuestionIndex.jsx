@@ -6,7 +6,7 @@ import { fetchQuestions } from "../../store/question";
 const QuestionIndex = props => {
 
     const dispatch = useDispatch();
-    const questions = useSelector(state => Object.values(state.questions));
+    const questions = useSelector(state => Object.values(state.questions).reverse());
     const { page } = useParams();
     console.log(page);
     
