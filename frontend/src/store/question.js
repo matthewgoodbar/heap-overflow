@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { refreshQuestionCount } from "./questionCount";
 
 const ADD_QUESTION = 'questions/ADD_QUESTION';
 const ADD_QUESTIONS = 'questions/ADD_QUESTIONS';
@@ -29,6 +30,7 @@ export const fetchQuestions = (pageNumber) => async dispatch => {
     const res = await csrfFetch(`/api/questions/?page=${pageNumber}`);
     const data = await res.json();
     dispatch(addQuestions(data.questions));
+    dispatch(refreshQuestionCount(data.questionCount));
 };
 
 export const fetchQuestion = (questionId) => async dispatch => {

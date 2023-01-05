@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import questionsReducer from "./question";
 import sidebarReducer from "./sidebar";
+import questionCountReducer from "./questionCount";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   questions: questionsReducer,
+  questionCount: questionCountReducer,
   sidebar: sidebarReducer
 });
 

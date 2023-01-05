@@ -1,5 +1,13 @@
+#question-index-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+#question-index-header > div > p {
+    color: gray;
+}
 
 #question-list {
-    height: 682px;
+    /* height: 682px; */
 }

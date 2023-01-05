@@ -7,7 +7,15 @@
 }
 
 h1 {
+    font-size: 30px;
+}
+
+h2 {
     font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
 }
 
 .button-light {
@@ -38,5 +46,6 @@ h1 {
 .component-with-sidebar {
     width: 1100px;
     line-height: 1.6;
-    padding: 0px 16px 0px 16px;
+    padding: 0px 0px 0px 16px;
+    border-left: 1px solid gray;
 }
