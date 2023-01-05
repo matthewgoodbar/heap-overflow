@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { QueryParamProvider } from 'use-query-params';
+import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
 import { BrowserRouter } from 'react-router-dom';
 import './reset.css';
 import './index.css';
@@ -23,7 +25,9 @@ const Root = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <QueryParamProvider adapter={ReactRouter5Adapter} >
+          <App />
+        </QueryParamProvider>
       </BrowserRouter>
     </Provider>
   );

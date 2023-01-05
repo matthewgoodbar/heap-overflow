@@ -3,6 +3,7 @@ import csrfFetch from "./csrf";
 const ADD_QUESTION = 'questions/ADD_QUESTION';
 const ADD_QUESTIONS = 'questions/ADD_QUESTIONS';
 const REMOVE_QUESTION = 'questions/REMOVE_QUESTION';
+const CLEAR_QUESTIONS = 'questions/CLEAR_QUESTIONS';
 
 export const addQuestion = (question) => ({
     type: ADD_QUESTION,
@@ -17,6 +18,10 @@ export const addQuestions = (questions) => ({
 export const removeQuestion = (questionId) => ({
     type: REMOVE_QUESTION,
     questionId
+});
+
+export const clearQuestions = () => ({
+    type: CLEAR_QUESTIONS
 });
 
 export const fetchQuestions = (pageNumber) => async dispatch => {
@@ -67,6 +72,8 @@ const questionsReducer = (state = {}, action) => {
         case REMOVE_QUESTION:
             delete newState[action.questionId];
             return newState;
+        case CLEAR_QUESTIONS:
+            return {};
         default: return state;
     }
 };
