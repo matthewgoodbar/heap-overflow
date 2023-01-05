@@ -1,9 +1,14 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { hideSidebar } from "../../store/sidebar";
 
 const Splash = props => {
 
+    const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.currentUser);
+
+    useEffect(() => {dispatch(hideSidebar())}, []);
     
     return (
         <div id="splash" className="component-standard">

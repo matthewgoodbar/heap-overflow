@@ -6,12 +6,14 @@ import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import QuestionIndex from "./components/QuestionIndex";
+import Sidebar from "./components/Sidebar";
 
 const App = props => {
   return (
     <>
       <Navigation />
       <div id="page-content">
+        <Sidebar />
         <Switch>
           <Route exact path="/">
             <Splash />

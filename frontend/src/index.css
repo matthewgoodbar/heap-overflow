@@ -34,3 +34,8 @@ h1 {
     width: 1264px;
     line-height: 1.6;
 }
+
+.component-with-sidebar {
+    width: 1100px;
+    line-height: 1.6;
+}

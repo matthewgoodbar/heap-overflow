@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Redirect } from "react-router-dom";
+import { hideSidebar } from "../../store/sidebar";
 
 const SignupForm = props => {
 
@@ -12,6 +13,8 @@ const SignupForm = props => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {dispatch(hideSidebar())}, []);
 
     if (currentUser) return <Redirect to="/" />
 
