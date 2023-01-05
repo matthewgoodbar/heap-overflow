@@ -1,13 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { showSidebar } from "../../store/sidebar";
 
 const NotFound = props => {
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {dispatch(showSidebar())}, []);
     
     return (
         <div id="not-found" className="component-with-sidebar">

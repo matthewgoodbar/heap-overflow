@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Splash from "./components/Splash";
 import NotFound from "./components/NotFound";
 import Navigation from "./components/Navigation";
@@ -13,7 +13,6 @@ const App = props => {
     <>
       <Navigation />
       <div id="page-content">
-        <Sidebar />
         <Switch>
           <Route exact path="/">
             <Splash />
@@ -25,10 +24,15 @@ const App = props => {
             <SignupForm />
           </Route>
           <Route path="/questions">
+            <Sidebar />
             <QuestionIndex />
           </Route>
-          <Route>
+          <Route path="/404">
+            <Sidebar />
             <NotFound />
+          </Route>
+          <Route>
+            <Redirect to="/404" />
           </Route>
         </Switch>
       </div>

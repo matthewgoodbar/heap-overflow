@@ -3,7 +3,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 h1 {
@@ -38,4 +38,5 @@ h1 {
 .component-with-sidebar {
     width: 1100px;
     line-height: 1.6;
+    padding: 0px 16px 0px 16px;
 }

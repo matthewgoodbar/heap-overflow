@@ -24,7 +24,7 @@ const QuestionIndex = props => {
     return (
         <div id="question-index" className="component-with-sidebar">
             <h2>All Questions</h2>
-            <ul>
+            <ul id="question-list">
                 {questions &&
                 questions.map((question) => <QuestionPreview key={question.id} question={question} />)}
             </ul>
