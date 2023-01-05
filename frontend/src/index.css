@@ -46,6 +46,6 @@ h3 {
 .component-with-sidebar {
     width: 1100px;
     line-height: 1.6;
-    padding: 0px 0px 0px 16px;
+    /* padding: 0px 0px 0px 16px; */
     border-left: 1px solid gray;
 }
