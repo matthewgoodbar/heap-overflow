@@ -62,6 +62,13 @@ h3 {
     padding: 8px;
 }
 
+.page-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0px 8px 0px;
+}
+
 .component-standard {
     width: 1264px;
     line-height: 1.6;

@@ -41,12 +41,12 @@ const QuestionIndex = props => {
                 {questions &&
                 questions.map((question) => <QuestionPreview key={question.id} question={question} />)}
             </ul>
-            <div>
+            <div className="page-buttons">
                 { (page !== 1) &&
-                <button onClick={e => setPage(num => num-1)}>Prev</button>
+                <div onClick={e => setPage(num => num-1)} className="button-light">Prev</div>
                 }
                 { (questionCount >= page * 10) &&
-                <button onClick={e => setPage(num => num+1)}>Next</button>
+                <div onClick={e => setPage(num => num+1)} className="button-light">Next</div>
                 }
             </div>
         </div>
