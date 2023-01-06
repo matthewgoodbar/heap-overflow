@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Splash from "./components/Splash";
-import NotFound from "./components/NotFound";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
+import Splash from "./components/Splash";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import QuestionIndex from "./components/QuestionIndex";
@@ -46,6 +47,7 @@ const App = props => {
           </Route>
         </Switch>
       </div>
+      <Footer />
     </>
   );
 }
