@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { useQueryParam, NumberParam } from "use-query-params";
 import { clearQuestions, fetchQuestions } from "../../store/question";
 import QuestionPreview from "../QuestionPreview/";
@@ -8,15 +8,23 @@ import QuestionPreview from "../QuestionPreview/";
 const QuestionIndex = props => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const questions = useSelector(state => Object.values(state.questions).reverse());
     const questionCount = useSelector(state => state.questionCount.count);
     const [page, setPage] = useQueryParam('page', NumberParam);
 
-    
     useEffect(() => {
         dispatch(clearQuestions());
-        dispatch(fetchQuestions(page));
+        dispatch(fetchQuestions(page))
+        .catch(() => {
+            history.push("/404");
+        });
     }, [page]);
+
+    if (questionCount) {
+        const pageOutOfBounds = (questionCount < (page - 1) * 10 || page < 1);
+        if (pageOutOfBounds) return <Redirect to="/404" />
+    }
 
     if (!page) return <Redirect to="/questions?page=1"/>
     

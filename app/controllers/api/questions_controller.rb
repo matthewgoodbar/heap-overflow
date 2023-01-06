@@ -7,11 +7,10 @@ class Api::QuestionsController < ApplicationController
         @page = params[:page].to_i
         # @questions = Question.all
         @questions = Question.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (@page - 1))
-        @questions.where()
         if @questions
             render :index
         else
-            render json: { questions: nil }
+            render json: { errors: "question not found" }, status: 404
         end
     end
 
@@ -20,7 +19,7 @@ class Api::QuestionsController < ApplicationController
         if @question
             render :show
         else
-            render json: { questions: nil }
+            render json: { errors: "question not found" }, status: 404
         end
     end
 

@@ -28,15 +28,21 @@ export const clearQuestions = () => ({
 export const fetchQuestions = (pageNumber) => async dispatch => {
     pageNumber ||= 1;
     const res = await csrfFetch(`/api/questions/?page=${pageNumber}`);
-    const data = await res.json();
-    dispatch(addQuestions(data.questions));
-    dispatch(refreshQuestionCount(data.questionCount));
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addQuestions(data.questions));
+        dispatch(refreshQuestionCount(data.questionCount));
+    }
+    return res;
 };
 
 export const fetchQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`);
-    const data = await res.json();
-    dispatch(addQuestion(data.question));
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addQuestion(data.question));
+    }
+    return res;
 };
 
 export const createQuestion = (question) => async dispatch => {
@@ -44,8 +50,11 @@ export const createQuestion = (question) => async dispatch => {
         method: 'POST',
         body: JSON.stringify(question)
     });
-    const data = await res.json();
-    dispatch(addQuestion(data.question));
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addQuestion(data.question));
+    }
+    return res;
 };
 
 export const updateQuestion = (question) => async dispatch => {
@@ -53,15 +62,21 @@ export const updateQuestion = (question) => async dispatch => {
         method: 'PATCH',
         body: JSON.stringify(question)
     });
-    const data = await res.json();
-    dispatch(addQuestion(data.question));
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addQuestion(data.question));
+    }
+    return res;
 };
 
 export const deleteQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`, {
         method: 'DELETE'
     });
-    dispatch(removeQuestion(questionId));
+    if (res.ok) {
+        dispatch(removeQuestion(questionId));
+    }
+    return res;
 };
 
 const questionsReducer = (state = {}, action) => {

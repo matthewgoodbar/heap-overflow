@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router";
+import { Redirect, useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchQuestion } from "../../store/question";
 import AnswerForm from "../AnswerForm";
@@ -9,15 +9,19 @@ const Question = props => {
 
     const dispatch = useDispatch();
     const { questionId } = useParams();
+    const history = useHistory();
     const question = useSelector(state => state.questions[questionId]);
     const currentUser = useSelector(state => state.session.currentUser);
     const answers = useSelector(state => state.answers);
 
     useEffect(() => {
-        dispatch(fetchQuestion(questionId));
+        dispatch(fetchQuestion(questionId))
+            .catch(() => {
+                history.push("/404");
+            });
     }, [questionId]);
 
-    if (!questionId) return <Redirect to="/404" />
+    // if (!questionId) return <Redirect to="/404" />
 
     if (!question) return <div id="question-show" className="component-with-sidebar"></div>
     

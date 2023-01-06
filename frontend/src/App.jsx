@@ -8,6 +8,7 @@ import SignupForm from "./components/SignupForm";
 import QuestionIndex from "./components/QuestionIndex";
 import Question from "./components/Question";
 import Sidebar from "./components/Sidebar";
+import QuestionForm from "./components/QuestionForm";
 
 const App = props => {
   return (
@@ -27,6 +28,10 @@ const App = props => {
           <Route exact path="/questions">
             <Sidebar />
             <QuestionIndex />
+          </Route>
+          <Route exact path="/questions/new">
+            <Sidebar />
+            <QuestionForm />
           </Route>
           <Route exact path="/questions/:questionId">
             <Sidebar />
