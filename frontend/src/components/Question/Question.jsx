@@ -15,6 +15,10 @@ const Question = props => {
     const answers = useSelector(state => state.answers);
 
     useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+    
+    useEffect(() => {
         dispatch(fetchQuestion(questionId))
             .catch(() => {
                 history.push("/404");

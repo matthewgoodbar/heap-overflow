@@ -13,6 +13,10 @@ const SignupForm = props => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
     if (currentUser) return <Redirect to="/" />
 
     const handleSubmit = e => {

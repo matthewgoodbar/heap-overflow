@@ -9,6 +9,7 @@ const QuestionForm = props => {
     const history = useHistory();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
+    const [errors, setErrors] = useState("");
     const [headerText, setHeaderText] = useState("");
     const [buttonText, setButtonText] = useState("");
     const { questionId } = useParams();
@@ -17,14 +18,34 @@ const QuestionForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const payload = { title, body, authorId: currentUser.id };
         if (questionId) {
-            dispatch(updateQuestion(payload));
+            let payload = { id: questionId, title, body, authorId: currentUser.id }
+            dispatch(updateQuestion(payload))
+            .then(() => {
+                history.push(`/questions/${questionId}`);
+            })
+            .catch(async res => {
+                let data = await res.clone().json();
+                setErrors(data.errors);
+            });
         } else {
-            dispatch(createQuestion(payload));
+            let payload = { title, body, authorId: currentUser.id };
+            dispatch(createQuestion(payload))
+                .then(async res => {
+                    let data = await res.clone().json();
+                    if (res.ok) {
+                        history.push(`/questions/${data.question.id}`);
+                    } else {
+                        setErrors(data.errors);
+                    }
+                });
+            
         }
-        history.push(`/questions/${questionId}`);
     };
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
 
     useEffect(() => {
         if (questionId) {
@@ -60,6 +81,9 @@ const QuestionForm = props => {
                     </label> <br/>
                     <button className="button-dark">{buttonText}</button>
                 </form>
+                { (errors) && 
+                <div>{errors}</div>
+                }
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 class Api::QuestionsController < ApplicationController
 
     before_action :require_logged_in, only: [:create, :update, :destroy]
+    wrap_parameters include: Question.attribute_names + ['authorId']
     
     def index
         items_per_page = 10
@@ -10,7 +11,7 @@ class Api::QuestionsController < ApplicationController
         if @questions
             render :index
         else
-            render json: { errors: "question not found" }, status: 404
+            render json: { errors: ["question not found"] }, status: 404
         end
     end
 
@@ -19,7 +20,7 @@ class Api::QuestionsController < ApplicationController
         if @question
             render :show
         else
-            render json: { errors: "question not found" }, status: 404
+            render json: { errors: ["question not found"] }, status: 404
         end
     end
 
@@ -28,11 +29,18 @@ class Api::QuestionsController < ApplicationController
         if @question.save
             render :show
         else
-            render json: { errors: "unable to save question" }, status: :unprocessable_entity
+            render json: { errors: ["unable to save question"] }, status: :unprocessable_entity
         end
     end
 
     def update
+        @question = Question.find_by(id: params[:id])
+        # debugger
+        if @question && @question.update(question_params)
+            render :show
+        else
+            render json: { errors: ["unable to save question"] }, status: :unprocessable_entity
+        end
     end
 
     def destroy

@@ -14,6 +14,10 @@ const QuestionIndex = props => {
     const [page, setPage] = useQueryParam('page', NumberParam);
 
     useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
+    useEffect(() => {
         dispatch(clearQuestions());
         dispatch(fetchQuestions(page))
         .catch(() => {
