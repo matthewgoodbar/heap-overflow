@@ -30,6 +30,16 @@
     border-top: 1px solid lightgray;
 }
 
+#your-answer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 1px solid lightgray;
+}
+
+#answers-header > p {
+    color: gray;
+}
+
 #author-plaque-container {
     display: flex;
     justify-content: end;

@@ -11,10 +11,14 @@ const Splash = props => {
             <p>This is the sample splash page. Click 'Log In' to log in if you have an existing account, <br/>
                 or 'Sign Up' if you don't have an account yet.
             </p>
+            <br/>
             {currentUser &&
-            <p>You are currently logged in as: {currentUser.username}</p>
+            <>
+                <p>You are currently logged in as: {currentUser.username}</p>
+                <br/>
+            </>
             }
-            <NavLink to="/questions">Click here to view questions</NavLink>
+            <NavLink to="/questions" className="button-light">Click here to view questions</NavLink>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchQuestion } from "../../store/question";
+import AnswerForm from "../AnswerForm";
 
 const Question = props => {
 
@@ -10,6 +11,7 @@ const Question = props => {
     const { questionId } = useParams();
     const question = useSelector(state => state.questions[questionId]);
     const currentUser = useSelector(state => state.session.currentUser);
+    const answers = useSelector(state => state.answers);
 
     useEffect(() => {
         dispatch(fetchQuestion(questionId));
@@ -45,7 +47,29 @@ const Question = props => {
                 </div>
             </div>
             <div id="answers-header">
-                <h2>Answers</h2>
+                { (answers) && 
+                <h2>{answers.length} Answers</h2>
+                }
+                { (!answers) &&
+                <>
+                    <h2>No answers yet</h2>
+                    <p>Be the first to lend a hand!</p>
+                </>
+                }
+            </div>
+            { (answers) &&
+            <div id="answer-list">
+
+            </div>
+            }
+            <div id="your-answer">
+                <h2>Your Answer</h2>
+                { (currentUser) &&
+                <AnswerForm />
+                }
+                { (!currentUser) &&
+                <p><Link to='/login'>Log in</Link> or <Link to='/signup'>sign up</Link> to answer a question</p>
+                }
             </div>
         </div>
     );
