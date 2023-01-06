@@ -24,6 +24,12 @@ class Api::QuestionsController < ApplicationController
     end
 
     def create
+        @question = Question.new(question_params)
+        if @question.save
+            render :show
+        else
+            render json: { errors: "unable to save question" }, status: :unprocessable_entity
+        end
     end
 
     def update

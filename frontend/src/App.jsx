@@ -34,6 +34,10 @@ const App = props => {
             <Sidebar />
             <QuestionForm />
           </Route>
+          <Route exact path="/questions/:questionId/edit">
+            <Sidebar />
+            <QuestionForm />
+          </Route>
           <Route exact path="/questions/:questionId">
             <Sidebar />
             <Question />
