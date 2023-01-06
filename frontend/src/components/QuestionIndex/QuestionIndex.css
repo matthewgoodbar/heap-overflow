@@ -1,6 +1,6 @@
 #question-index-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding-left: 16px;
 }
@@ -9,6 +9,6 @@
     color: gray;
 }
 
-#question-list {
-    /* height: 682px; */
+#question-list > * {
+    padding-left: 16px;
 }

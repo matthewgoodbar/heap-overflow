@@ -19,6 +19,7 @@ h3 {
 }
 
 .button-light {
+    font-size: 12px;
     margin: 0px 2px 0px 2px;
     padding: 8px 10.4px 8px 10.4px;
     background-color: rgb(225, 236, 244);
@@ -29,6 +30,7 @@ h3 {
 }
 
 .button-dark {
+    font-size: 12px;
     margin: 0px 2px 0px 2px;
     padding: 8px 10.4px 8px 10.4px;
     background-color: rgb(10, 149, 255);
@@ -36,6 +38,27 @@ h3 {
     border: solid rgb(200, 200, 200) 1px;
     text-decoration: none;
     cursor: pointer;
+}
+
+.button-small {
+    font-size: 12px;
+    padding: 4px 4px 4px 4px;
+    color: rgb(57, 115, 157);
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-small:hover {
+    background-color: rgb(225, 236, 244);
+}
+
+.author-plaque {
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+    background-color: lightgray;
+    padding: 8px;
 }
 
 .component-standard {
@@ -47,5 +70,5 @@ h3 {
     width: 1100px;
     line-height: 1.6;
     /* padding: 0px 0px 0px 16px; */
-    border-left: 1px solid gray;
+    border-left: 1px solid lightgray;
 }

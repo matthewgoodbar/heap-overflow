@@ -1,0 +1,36 @@
+#question-show > * {
+    padding-left: 16px;
+}
+
+#question-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#question-title {
+    display: flex;
+    align-items: center;
+    width: 900px;
+}
+
+#question-header > div > p {
+    color: gray;
+}
+
+#question-body {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 1px solid lightgray;
+}
+
+#answers-header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 1px solid lightgray;
+}
+
+#author-plaque-container {
+    display: flex;
+    justify-content: end;
+}

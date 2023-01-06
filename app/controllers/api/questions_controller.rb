@@ -7,6 +7,7 @@ class Api::QuestionsController < ApplicationController
         @page = params[:page].to_i
         # @questions = Question.all
         @questions = Question.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (@page - 1))
+        @questions.where()
         if @questions
             render :index
         else

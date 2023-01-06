@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { useQueryParam, NumberParam } from "use-query-params";
 import { clearQuestions, fetchQuestions } from "../../store/question";
-import { showSidebar } from "../../store/sidebar";
 import QuestionPreview from "../QuestionPreview/";
 
 const QuestionIndex = props => {
@@ -13,7 +12,6 @@ const QuestionIndex = props => {
     const questionCount = useSelector(state => state.questionCount.count);
     const [page, setPage] = useQueryParam('page', NumberParam);
 
-    useEffect(() => {dispatch(showSidebar())}, []);
     
     useEffect(() => {
         dispatch(clearQuestions());
@@ -36,10 +34,12 @@ const QuestionIndex = props => {
                 questions.map((question) => <QuestionPreview key={question.id} question={question} />)}
             </ul>
             <div>
-                {(page !== 1) &&
+                { (page !== 1) &&
                 <button onClick={e => setPage(num => num-1)}>Prev</button>
                 }
+                { (questionCount >= page * 10) &&
                 <button onClick={e => setPage(num => num+1)}>Next</button>
+                }
             </div>
         </div>
     );

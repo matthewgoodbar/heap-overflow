@@ -36,23 +36,12 @@ header {
 }
 
 #account-buttons {
-    font-size: 12px;
     list-style: none;
     display: flex;
 }
 
 #about-button {
-    font-size: 12px;
     margin-right: 12px;
-    padding: 4px 4px 4px 4px;
-    color: rgb(57, 115, 157);
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#about-button:hover {
-    background-color: rgb(225, 236, 244);
 }
 
 #search {

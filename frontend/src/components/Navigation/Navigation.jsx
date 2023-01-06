@@ -43,7 +43,7 @@ const Navigation = props => {
             <header>
                 <div id="navigation">
                     <NavLink to="/" id="logo">heap<span id="logo-bold">overflow</span></NavLink>
-                    <div id="about-button">About</div>
+                    <NavLink to="/about" id="about-button" className="button-small">About</NavLink>
                     <form id="search">
                         <input type="text" placeholder="Search" />
                     </form>
