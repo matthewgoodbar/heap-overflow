@@ -15,9 +15,6 @@ const QuestionIndex = props => {
 
     useEffect(() => {
         window.scrollTo(0,0);
-    }, []);
-
-    useEffect(() => {
         dispatch(clearQuestions());
         dispatch(fetchQuestions(page))
         .catch(() => {
