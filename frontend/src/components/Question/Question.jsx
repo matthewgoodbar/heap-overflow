@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { fetchQuestion } from "../../store/question";
+import { deleteQuestion, fetchQuestion } from "../../store/question";
 import AnswerForm from "../AnswerForm";
 
 const Question = props => {
@@ -25,6 +25,11 @@ const Question = props => {
             });
     }, [questionId]);
 
+    const handleDelete = e => {
+        dispatch(deleteQuestion(questionId));
+        history.push("/questions");
+    };
+
     // if (!questionId) return <Redirect to="/404" />
 
     if (!question) return <div id="question-show" className="component-with-sidebar"></div>
@@ -36,10 +41,14 @@ const Question = props => {
             <div id="question-header">
                 <div>
                     <span id="question-title">
-                        <h1>{question.title}
-                        { (authorLoggedIn) &&
-                        <Link to={`/questions/${questionId}/edit`} className="button-small">Edit</Link>}</h1>
+                        <h1>{question.title}</h1>
                     </span>
+                    { (authorLoggedIn) &&
+                    <div id="edit-delete-buttons">
+                        <Link to={`/questions/${questionId}/edit`} className="button-small">Edit this question</Link>
+                        <p onClick={handleDelete} className="button-small">Delete this question</p>
+                    </div>
+                    }
                     <p>Asked {question.createdAt.split("T")[0]} Modified {question.updatedAt.split("T")[0]}</p>
                 </div>
                 <Link to="/questions/new" className="button-dark">Ask a Question</Link>

@@ -21,23 +21,23 @@ const QuestionForm = props => {
         if (questionId) {
             let payload = { id: questionId, title, body, authorId: currentUser.id }
             dispatch(updateQuestion(payload))
-            .then(() => {
-                history.push(`/questions/${questionId}`);
-            })
-            .catch(async res => {
-                let data = await res.clone().json();
-                setErrors(data.errors);
-            });
+                .then(() => {
+                    history.push(`/questions/${questionId}`);
+                })
+                .catch(async res => {
+                    let data = await res.clone().json();
+                    setErrors(data.errors);
+                });
         } else {
             let payload = { title, body, authorId: currentUser.id };
             dispatch(createQuestion(payload))
                 .then(async res => {
                     let data = await res.clone().json();
-                    if (res.ok) {
-                        history.push(`/questions/${data.question.id}`);
-                    } else {
-                        setErrors(data.errors);
-                    }
+                    history.push(`/questions/${data.question.id}`);
+                })
+                .catch(async res => {
+                    let data = await res.clone().json();
+                    setErrors(data.errors);
                 });
             
         }

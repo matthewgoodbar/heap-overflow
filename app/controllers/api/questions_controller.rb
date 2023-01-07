@@ -44,6 +44,10 @@ class Api::QuestionsController < ApplicationController
     end
 
     def destroy
+        @question = Question.find_by(id: params[:id])
+        if @question.destroy
+            render json: { message: "success" }
+        end
     end
 
     private

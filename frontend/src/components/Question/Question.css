@@ -11,11 +11,15 @@
 #question-title {
     display: flex;
     align-items: center;
-    width: 900px;
+    max-width: 900px;
 }
 
 #question-header > div > p {
     color: gray;
+}
+
+#edit-delete-buttons {
+    display: flex;
 }
 
 #question-body {

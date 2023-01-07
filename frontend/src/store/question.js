@@ -28,21 +28,23 @@ export const clearQuestions = () => ({
 export const fetchQuestions = (pageNumber) => async dispatch => {
     pageNumber ||= 1;
     const res = await csrfFetch(`/api/questions/?page=${pageNumber}`);
+    const resClone = res.clone();
     if (res.ok) {
         const data = await res.json();
         dispatch(addQuestions(data.questions));
         dispatch(refreshQuestionCount(data.questionCount));
     }
-    return res;
+    return resClone;
 };
 
 export const fetchQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`);
+    const resClone = res.clone();
     if (res.ok) {
         let data = await res.json();
         dispatch(addQuestion(data.question));
     }
-    return res;
+    return resClone;
 };
 
 export const createQuestion = (question) => async dispatch => {
@@ -50,11 +52,12 @@ export const createQuestion = (question) => async dispatch => {
         method: 'POST',
         body: JSON.stringify(question)
     });
+    const resClone = res.clone();
     if (res.ok) {
         const data = await res.json();
         dispatch(addQuestion(data.question));
     }
-    return res;
+    return resClone;
 };
 
 export const updateQuestion = (question) => async dispatch => {
@@ -62,21 +65,23 @@ export const updateQuestion = (question) => async dispatch => {
         method: 'PATCH',
         body: JSON.stringify(question)
     });
+    const resClone = res.clone();
     if (res.ok) {
         const data = await res.json();
         dispatch(addQuestion(data.question));
     }
-    return res;
+    return resClone;
 };
 
 export const deleteQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`, {
         method: 'DELETE'
     });
+    const resClone = res.clone();
     if (res.ok) {
         dispatch(removeQuestion(questionId));
     }
-    return res;
+    return resClone;
 };
 
 const questionsReducer = (state = {}, action) => {
