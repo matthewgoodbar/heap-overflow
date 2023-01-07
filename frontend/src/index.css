@@ -80,3 +80,40 @@ h3 {
     /* padding: 0px 0px 0px 16px; */
     border-left: 1px solid lightgray;
 }
+
+.qa-form-container {
+    display: flex;
+    align-items: flex-start;
+    width: fit-content;
+    margin: 8px 0px 0px 16px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px 5px,
+                rgba(0, 0, 0, 0.05) 5px 5px 0px 0px;
+}
+
+.qa-help-errors {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.qa-help-errors-box {
+    color: rgb(75, 75, 75);
+    width: 450px;
+    margin-left: 16px;
+    padding: 8px;
+}
+
+.qa-help-errors-box > ul {
+    list-style: inside;
+}
+
+.help-color {
+    background-color: rgb(245, 236, 157);
+    border: 1px solid rgb(182, 182, 68);
+}
+
+.errors-color {
+    background-color: rgb(248, 179, 179);
+    border: 1px solid rgb(180, 91, 91);
+}

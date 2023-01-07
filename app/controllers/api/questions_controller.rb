@@ -29,7 +29,7 @@ class Api::QuestionsController < ApplicationController
         if @question.save
             render :show
         else
-            render json: { errors: ["unable to save question"] }, status: :unprocessable_entity
+            render json: { errors: @question.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -39,7 +39,7 @@ class Api::QuestionsController < ApplicationController
         if @question && @question.update(question_params)
             render :show
         else
-            render json: { errors: ["unable to save question"] }, status: :unprocessable_entity
+            render json: { errors: @question.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

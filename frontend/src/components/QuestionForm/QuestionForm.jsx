@@ -9,7 +9,7 @@ const QuestionForm = props => {
     const history = useHistory();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [errors, setErrors] = useState("");
+    const [errors, setErrors] = useState([]);
     const [headerText, setHeaderText] = useState("");
     const [buttonText, setButtonText] = useState("");
     const { questionId } = useParams();
@@ -25,18 +25,18 @@ const QuestionForm = props => {
                     history.push(`/questions/${questionId}`);
                 })
                 .catch(async res => {
-                    let data = await res.clone().json();
+                    let data = await res.json();
                     setErrors(data.errors);
                 });
         } else {
             let payload = { title, body, authorId: currentUser.id };
             dispatch(createQuestion(payload))
                 .then(async res => {
-                    let data = await res.clone().json();
+                    let data = await res.json();
                     history.push(`/questions/${data.question.id}`);
                 })
                 .catch(async res => {
-                    let data = await res.clone().json();
+                    let data = await res.json();
                     setErrors(data.errors);
                 });
             
@@ -48,16 +48,19 @@ const QuestionForm = props => {
     }, []);
 
     useEffect(() => {
+        if (question) {
+            setTitle(question.title);
+            setBody(question.body);
+        }
+    }, [question]);
+
+    useEffect(() => {
         if (questionId) {
             setHeaderText("Edit your question");
             setButtonText("Edit Question");
             dispatch(fetchQuestion(questionId))
-                .then(() => {
-                    setTitle(question.title);
-                    setBody(question.body);
-                })
                 .catch(() => {
-                    history.push("/404");
+                    history.push(404);
                 });
         } else {
             setHeaderText("Ask a new question");
@@ -71,7 +74,7 @@ const QuestionForm = props => {
     return (
         <div id="question-form" className="component-with-sidebar">
             <h1>{headerText}</h1>
-            <div id="question-form-container">
+            <div className="qa-form-container">
                 <form onSubmit={handleSubmit}>
                     <label>Title <br/>
                         <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
@@ -81,9 +84,24 @@ const QuestionForm = props => {
                     </label> <br/>
                     <button className="button-dark">{buttonText}</button>
                 </form>
-                { (errors) && 
-                <div>{errors}</div>
-                }
+                <div className="qa-help-errors">
+                    <div className="qa-help-errors-box help-color">
+                        <p>Tips for a good question:</p>
+                        <ul>
+                            <li>The title should be a one-line summary of your problem</li>
+                            <li>Give more specific details within the body</li>
+                            <li>List what you've tried so far, and what the outcomes were</li>
+                        </ul>
+                    </div>
+                    { (errors.length > 0) && 
+                    <div className="qa-help-errors-box errors-color">
+                        <p>Can't submit question:</p>
+                        <ul>
+                            {errors.map((er) => <li key={er}>{er}</li>)}
+                        </ul>
+                    </div>
+                    }
+                </div>
             </div>
         </div>
     );
