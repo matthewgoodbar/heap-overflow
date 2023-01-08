@@ -32,6 +32,15 @@ ApplicationRecord.transaction do
         body: Faker::Lorem.paragraph(sentence_count: 14, random_sentences_to_add: 10)
       })
     end
+
+    puts "Creating answers..."
+    60.times do
+      Answer.create!({
+        author_id: User.order(Arel.sql('RANDOM()')).first.id,
+        question_id: Question.order(Arel.sql('RANDOM()')).first.id,
+        body: Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 15)
+      })
+    end
   
     puts "Done!"
   end
