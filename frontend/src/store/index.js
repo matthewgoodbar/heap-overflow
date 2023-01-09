@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import questionsReducer from "./question";
 import questionCountReducer from "./questionCount";
+import answersReducer from "./answer";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   questions: questionsReducer,
-  questionCount: questionCountReducer
+  questionCount: questionCountReducer,
+  answers: answersReducer
 });
 
 let enhancer;
