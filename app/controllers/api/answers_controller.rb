@@ -37,7 +37,7 @@ class Api::AnswersController < ApplicationController
 
     def update
         @answer = Answer.find_by(id: params[:id])
-        if @answer && answer.update(answer_params)
+        if @answer && @answer.update(answer_params)
             render :show
         else
             render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity

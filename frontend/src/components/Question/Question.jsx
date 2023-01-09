@@ -69,7 +69,7 @@ const Question = props => {
             </div>
             <div id="answers-header">
                 { (answers.length > 0) && 
-                <h2>{question.answerCount} Answers</h2>
+                <h2>{answers.length} Answers</h2>
                 }
                 { (!answers.length) &&
                 <>

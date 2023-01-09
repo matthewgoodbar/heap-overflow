@@ -46,7 +46,7 @@ const Answer = ({ answer }) => {
                     <h3>Edit your answer</h3>
                     <p onClick={toggleEdit} className="button-small">Cancel</p>
                 </div>
-                <AnswerForm answer={answer} />
+                <AnswerForm answer={answer} toggleCallback={toggleEdit} />
             </div>
             }
         </>
