@@ -23,6 +23,7 @@ const QuestionPreview = ({ question }) => {
         <li className="question-preview">
             <Link to={`/questions/${question.id}`}><h3>{question.title}</h3></Link>
             <p>{previewBody}</p>
+            <p>{question.answerCount} answer{question.answerCount === 1 ? "" : "s"}</p>
             <p id="author-tag">Asked by <Link to={`/users/${question.authorId}`}>{authorName}</Link></p>
         </li>
     );

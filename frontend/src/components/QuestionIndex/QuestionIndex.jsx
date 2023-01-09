@@ -46,7 +46,7 @@ const QuestionIndex = props => {
                 { (page !== 1) &&
                 <div onClick={e => setPage(num => num-1)} className="button-light">Prev</div>
                 }
-                { (questionCount >= page * 10) &&
+                { (questionCount > page * 10) &&
                 <div onClick={e => setPage(num => num+1)} className="button-light">Next</div>
                 }
             </div>

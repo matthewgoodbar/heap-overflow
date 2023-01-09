@@ -3,4 +3,5 @@ json.question do
     json.author do
         json.extract! @question.author, :username
     end
+    json.answer_count @question.answers.count
 end
