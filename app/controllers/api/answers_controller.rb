@@ -13,20 +13,42 @@ class Api::AnswersController < ApplicationController
         if @answers
             render :index
         else
-            render json: { errors: ["answers not found"] }
+            render json: { errors: ["answers not found"] }, status: 404
         end
     end
 
     def show
+        @answer = Answer.find_by(id: params[:id])
+        if @answer
+            render :show
+        else
+            render json: { errors: ["answer not found"] }, status: 404
+        end
     end
 
     def create
+        @answer = Answer.new(answer_params)
+        if @answer.save
+            render :show
+        else
+            render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def update
+        @answer = Answer.find_by(id: params[:id])
+        if @answer && answer.update(answer_params)
+            render :show
+        else
+            render json: { errors: @answer.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def destroy
+        @answer = Answer.find_by(id: params[:id])
+        if @answer.destroy
+            render json: { message: "success" }
+        end
     end
 
     private
