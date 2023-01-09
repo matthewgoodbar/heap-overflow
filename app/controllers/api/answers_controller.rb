@@ -4,12 +4,10 @@ class Api::AnswersController < ApplicationController
     wrap_parameters include: Answer.attribute_names + ['authorId', 'questionId']
 
     def index
-        author_id = params[:author]
-        question_id = params[:question]
-        if author_id
-            @answers = Answer.find_by(author_id: author_id)
-        elsif question_id
-            @answers = Answer.find_by(question_id: question_id)
+        if params[:author]
+            @answers = Answer.where(author_id: params[:author].to_i)
+        elsif params[:question]
+            @answers = Answer.where(question_id: params[:question].to_i)
         end
 
         if @answers

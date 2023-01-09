@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { clearAnswers, fetchAnswersToQuestion } from "../../store/answer";
 import { deleteQuestion, fetchQuestion } from "../../store/question";
+import Answer from "../Answer";
 import AnswerForm from "../AnswerForm";
 
 const Question = props => {
@@ -12,7 +14,7 @@ const Question = props => {
     const history = useHistory();
     const question = useSelector(state => state.questions[questionId]);
     const currentUser = useSelector(state => state.session.currentUser);
-    const answers = useSelector(state => state.answers);
+    const answers = useSelector(state => Object.values(state.answers));
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -23,6 +25,8 @@ const Question = props => {
             .catch(() => {
                 history.push("/404");
             });
+        dispatch(clearAnswers());
+        dispatch(fetchAnswersToQuestion(questionId));
     }, [questionId]);
 
     const handleDelete = e => {
@@ -64,19 +68,19 @@ const Question = props => {
                 </div>
             </div>
             <div id="answers-header">
-                { (answers) && 
+                { (answers.length > 0) && 
                 <h2>{question.answerCount} Answers</h2>
                 }
-                { (!answers) &&
+                { (!answers.length) &&
                 <>
                     <h2>No answers yet</h2>
                     <p>Be the first to lend a hand!</p>
                 </>
                 }
             </div>
-            { (answers) &&
+            { (answers.length > 0) &&
             <div id="answer-list">
-
+                {answers.map(answer => <Answer key={answer.id} answer={answer}></Answer>)}
             </div>
             }
             <div id="your-answer">

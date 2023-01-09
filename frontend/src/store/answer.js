@@ -48,8 +48,12 @@ const answersReducer = (state = {}, action) => {
     const newState = { ...state };
     switch (action.type) {
         case ADD_ANSWER:
+            return { ...state, [action.answer.id]: action.answer };
         case ADD_ANSWERS:
+            return { ...state, ...action.answers };
         case REMOVE_ANSWER:
+            delete newState[action.answerId];
+            return newState;
         case CLEAR_ANSWERS:
             return {};
         default: return state;
