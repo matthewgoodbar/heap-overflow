@@ -44,6 +44,43 @@ export const fetchAnswersByAuthor = (authorId) => async dispatch => {
     return resClone;
 };
 
+export const createAnswer = (answer) => async dispatch => {
+    const res = await csrfFetch('/api/answers', {
+        method: 'POST',
+        body: JSON.stringify(answer)
+    });
+    const resClone = res.clone();
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addAnswer(data.answer));
+    }
+    return resClone;
+};
+
+export const updateAnswer = (answer) => async dispatch => {
+    const res = await csrfFetch(`/api/answers/${answer.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(answer)
+    });
+    const resClone = res.clone();
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addAnswer(data.answer));
+    }
+    return resClone;
+};
+
+export const deleteAnswer = (answerId) => async dispatch => {
+    const res = await csrfFetch(`/api/answers/${answerId}`, {
+        method: 'DELETE'
+    });
+    const resClone = res.clone();
+    if (res.ok) {
+        dispatch(removeAnswer(answerId));
+    }
+    return resClone;
+};
+
 const answersReducer = (state = {}, action) => {
     const newState = { ...state };
     switch (action.type) {

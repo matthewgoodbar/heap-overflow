@@ -43,8 +43,3 @@
 #answers-header > p {
     color: gray;
 }
-
-#author-plaque-container {
-    display: flex;
-    justify-content: end;
-}

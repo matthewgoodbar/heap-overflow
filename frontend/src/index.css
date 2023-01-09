@@ -62,6 +62,11 @@ h3 {
     padding: 8px;
 }
 
+.author-plaque-container {
+    display: flex;
+    justify-content: end;
+}
+
 .page-buttons {
     display: flex;
     justify-content: center;

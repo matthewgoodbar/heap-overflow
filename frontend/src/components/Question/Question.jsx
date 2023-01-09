@@ -61,7 +61,7 @@ const Question = props => {
                 <p>{question.body}
                 { (authorLoggedIn) &&
                 <Link to={`/questions/${questionId}/edit`} className="button-small">Edit</Link>}</p>
-                <div id="author-plaque-container">
+                <div className="author-plaque-container">
                     <Link to={`/users/${question.authorId}`} className="author-plaque">
                         <p>Asked by {question.author.username}</p>
                     </Link>
