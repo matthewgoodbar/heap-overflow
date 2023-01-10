@@ -19,4 +19,8 @@ class Answer < ApplicationRecord
     belongs_to :question,
         foreign_key: :question_id,
         class_name: :Question
+    
+    has_many :votes,
+        foreign_key: :answer_id,
+        class_name: :Vote
 end

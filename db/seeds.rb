@@ -1,9 +1,13 @@
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
+    Vote.destroy_all
+    Answer.destroy_all
     Question.destroy_all
     User.destroy_all
   
     puts "Resetting primary keys..."
+    ApplicationRecord.connection.reset_pk_sequence!('votes')
+    ApplicationRecord.connection.reset_pk_sequence!('answers')
     ApplicationRecord.connection.reset_pk_sequence!('questions')
     ApplicationRecord.connection.reset_pk_sequence!('users')
   
@@ -39,6 +43,15 @@ ApplicationRecord.transaction do
         author_id: User.order(Arel.sql('RANDOM()')).first.id,
         question_id: Question.order(Arel.sql('RANDOM()')).first.id,
         body: Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 15)
+      })
+    end
+
+    puts "Creating votes..."
+    240.times do
+      Vote.create({
+        voter_id: User.order(Arel.sql('RANDOM()')).first.id,
+        answer_id: Answer.order(Arel.sql('RANDOM()')).first.id,
+        vote_type: ["up", "down"].sample()
       })
     end
   
