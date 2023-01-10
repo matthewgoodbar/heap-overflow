@@ -14,10 +14,6 @@
     max-width: 900px;
 }
 
-#question-header > div > p {
-    color: gray;
-}
-
 #edit-delete-buttons {
     display: flex;
 }

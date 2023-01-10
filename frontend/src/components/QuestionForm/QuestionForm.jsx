@@ -42,12 +42,9 @@ const QuestionForm = props => {
             
         }
     };
-
+    
     useEffect(() => {
         window.scrollTo(0,0);
-    }, []);
-
-    useEffect(() => {
         if (question) {
             setTitle(question.title);
             setBody(question.body);

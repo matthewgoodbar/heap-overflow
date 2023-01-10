@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { fullTimestamp } from "../../dateUtil";
 import { clearAnswers, fetchAnswersToQuestion } from "../../store/answer";
 import { deleteQuestion, fetchQuestion } from "../../store/question";
 import Answer from "../Answer";
@@ -12,6 +13,7 @@ const Question = props => {
     const dispatch = useDispatch();
     const { questionId } = useParams();
     const history = useHistory();
+    const [timestamp, setTimestamp] = useState("");
     const question = useSelector(state => state.questions[questionId]);
     const currentUser = useSelector(state => state.session.currentUser);
     const answers = useSelector(state => Object.values(state.answers));
@@ -29,12 +31,16 @@ const Question = props => {
         dispatch(fetchAnswersToQuestion(questionId));
     }, [questionId]);
 
+    useEffect(() => {
+        if (question) {
+            setTimestamp(fullTimestamp(question));
+        }
+    }, [question]);
+
     const handleDelete = e => {
         dispatch(deleteQuestion(questionId));
         history.push("/questions");
     };
-
-    // if (!questionId) return <Redirect to="/404" />
 
     if (!question) return <div id="question-show" className="component-with-sidebar"></div>
     
@@ -53,7 +59,7 @@ const Question = props => {
                         <p onClick={handleDelete} className="button-small">Delete this question</p>
                     </div>
                     }
-                    <p>Asked {question.createdAt.split("T")[0]} Modified {question.updatedAt.split("T")[0]}</p>
+                    <p className="timestamp">Asked at {timestamp}</p>
                 </div>
                 <Link to="/questions/new" className="button-dark">Ask a Question</Link>
             </div>

@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { partialTimestamp } from "../../dateUtil";
 
 const QuestionPreview = ({ question }) => {
 
+    const [timestamp, setTimestamp] = useState("");
     const [authorName, setAuthorName] = useState(question.author.username);
     const currentUser = useSelector(state => state.session.currentUser);
 
@@ -14,7 +16,13 @@ const QuestionPreview = ({ question }) => {
         } else {
             setAuthorName(question.author.username);
         }
-    }, [currentUser])
+    }, [currentUser]);
+
+    useEffect(() => {
+        if (question) {
+            setTimestamp(partialTimestamp(question.createdAt));
+        }
+    }, [question]);
 
     const maxPreviewBodyLength = 100;
     const previewBody = (question.body.length <= maxPreviewBodyLength) ? question.body : question.body.substring(0, maxPreviewBodyLength) + "...";
@@ -23,7 +31,7 @@ const QuestionPreview = ({ question }) => {
         <li className="question-preview">
             <Link to={`/questions/${question.id}`}><h3>{question.title}</h3></Link>
             <p>{previewBody}</p>
-            <p>{question.answerCount} answer{question.answerCount === 1 ? "" : "s"}</p>
+            <p>{question.answerCount} answer{question.answerCount === 1 ? "" : "s"} | Asked at {timestamp}</p>
             <p id="author-tag">Asked by <Link to={`/users/${question.authorId}`}>{authorName}</Link></p>
         </li>
     );

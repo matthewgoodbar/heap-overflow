@@ -54,6 +54,10 @@ h3 {
     background-color: rgb(225, 236, 244);
 }
 
+.timestamp {
+    color: gray;
+}
+
 .author-plaque {
     font-size: 12px;
     text-decoration: none;

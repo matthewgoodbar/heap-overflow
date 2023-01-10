@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const Splash = props => {
+    
     const currentUser = useSelector(state => state.session.currentUser);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
     
     return (
         <div id="splash" className="component-standard">
