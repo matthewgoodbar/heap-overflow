@@ -23,4 +23,10 @@ class Answer < ApplicationRecord
     has_many :votes,
         foreign_key: :answer_id,
         class_name: :Vote
+    
+    def vote_sum
+        up_votes = self.votes.where(vote_type: "up").count
+        down_votes = self.votes.where(vote_type: "down").count * -1
+        return up_votes + down_votes
+    end
 end

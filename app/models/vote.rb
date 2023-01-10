@@ -11,7 +11,7 @@
 #
 class Vote < ApplicationRecord
     validates :voter_id, :answer_id, presence: true
-    validates :voter_id, uniqueness: {scope: :answer_id}
+    validates :answer_id, uniqueness: {scope: :voter_id}
     validates :vote_type, inclusion: {in: ["up", "down"]}
 
     belongs_to :voter,

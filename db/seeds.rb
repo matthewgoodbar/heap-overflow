@@ -47,12 +47,21 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating votes..."
-    240.times do
-      Vote.create({
-        voter_id: User.order(Arel.sql('RANDOM()')).first.id,
-        answer_id: Answer.order(Arel.sql('RANDOM()')).first.id,
-        vote_type: ["up", "down"].sample()
-      })
+    # 480.times do
+    #   Vote.create({
+    #     voter_id: User.order(Arel.sql('RANDOM()')).first.id,
+    #     answer_id: Answer.order(Arel.sql('RANDOM()')).first.id,
+    #     vote_type: ["up", "down"].sample()
+    #   })
+    # end
+    User.where('NOT id=1').each do |user|
+      Answer.all.each do |answer|
+        Vote.create({
+          voter_id: user.id,
+          answer_id: answer.id,
+          vote_type: ["up","down"].sample()
+        })
+      end
     end
   
     puts "Done!"
