@@ -1,9 +1,23 @@
 .answer {
     padding: 8px 0px 8px 0px;
     border-top: 1px solid lightgray;
+    display: flex;
 }
 
 #answer-edit-header {
     display: flex;
     align-items: center;
+}
+
+.vote-gui {
+    min-width: 60px;
+    max-width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.vote-count {
+    
 }

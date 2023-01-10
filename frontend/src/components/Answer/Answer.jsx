@@ -34,19 +34,26 @@ const Answer = ({ answer }) => {
         <>
             { (!edit) &&
             <div className="answer">
-                <p>{answer.body}</p>
-                { (authorLoggedIn) &&
-                <div id="edit-delete-buttons">
-                    <p onClick={toggleEdit} className="button-small">Edit this answer</p>
-                    <p onClick={handleDelete} className="button-small">Delete this answer</p>
+                <div className="vote-gui">
+                    <button>up</button>
+                    <p>{answer.votes}</p>
+                    <button>down</button>
                 </div>
-                }
-                <p className="timestamp">Answered at {timestamp}</p>
-                <div className="author-plaque-container">
-                        <Link to={`/users/${answer.authorId}`} className="author-plaque">
-                            <p>Answered by {answer.author.username}</p>
-                        </Link>
+                <div className="answer-content">
+                    <p>{answer.body}</p>
+                    { (authorLoggedIn) &&
+                    <div id="edit-delete-buttons">
+                        <p onClick={toggleEdit} className="button-small">Edit this answer</p>
+                        <p onClick={handleDelete} className="button-small">Delete this answer</p>
                     </div>
+                    }
+                    <p className="timestamp">Answered at {timestamp}</p>
+                    <div className="author-plaque-container">
+                            <Link to={`/users/${answer.authorId}`} className="author-plaque">
+                                <p>Answered by {answer.author.username}</p>
+                            </Link>
+                    </div>
+                </div>
             </div>
             }
             { (edit) &&
