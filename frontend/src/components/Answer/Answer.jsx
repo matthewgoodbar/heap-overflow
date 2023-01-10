@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fullTimestamp } from "../../dateUtil";
 import { deleteAnswer } from "../../store/answer";
+import { createVote, deleteVote, updateVote } from "../../store/vote";
 import AnswerForm from "../AnswerForm";
 
 const Answer = ({ answer }) => {
@@ -24,7 +25,41 @@ const Answer = ({ answer }) => {
 
     const toggleEdit = e => {
         setEdit(prev => !prev);
-    }
+    };
+
+    const handleUpvote = e => {
+        if (answer.votes[currentUser.id]?.voteType === "down") {
+            dispatch(updateVote({
+                id: answer.votes[currentUser.id].id,
+                voteType: "up"
+            }));
+        } else if (answer.votes[currentUser.id]) {
+            dispatch(deleteVote(answer.votes[currentUser.id].id));
+        } else {
+            dispatch(createVote({
+                answerId: answer.id,
+                voterId: currentUser.id,
+                voteType: "up"
+            }));
+        }
+    };
+
+    const handleDownvote = e => {
+        if (answer.votes[currentUser.id]?.voteType === "up") {
+            dispatch(updateVote({
+                id: answer.votes[currentUser.id].id,
+                voteType: "down"
+            }));
+        } else if (answer.votes[currentUser.id]) {
+            dispatch(deleteVote(answer.votes[currentUser.id].id));
+        } else {
+            dispatch(createVote({
+                answerId: answer.id,
+                voterId: currentUser.id,
+                voteType: "down"
+            }));
+        }
+    };
 
     if (!answer) return <div className="answer"></div>
 
@@ -35,9 +70,9 @@ const Answer = ({ answer }) => {
             { (!edit) &&
             <div className="answer">
                 <div className="vote-gui">
-                    <button>up</button>
-                    <p>{answer.votes}</p>
-                    <button>down</button>
+                    <button className="upvote-button" onClick={handleUpvote}>up</button>
+                    <p>{answer.voteSum}</p>
+                    <button className="downvote-button" onClick={handleDownvote}>down</button>
                 </div>
                 <div className="answer-content">
                     <p>{answer.body}</p>

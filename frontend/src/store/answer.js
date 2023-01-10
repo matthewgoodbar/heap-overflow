@@ -24,6 +24,16 @@ export const clearAnswers = () => ({
     type: CLEAR_ANSWERS
 });
 
+export const fetchAnswer = (answerId) => async dispatch => {
+    const res = await csrfFetch(`/api/answers/${answerId}`);
+    const resClone = res.clone();
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addAnswer(data.answer));
+    }
+    return resClone;
+};
+
 export const fetchAnswersToQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/answers/?question=${questionId}`);
     const resClone = res.clone();
