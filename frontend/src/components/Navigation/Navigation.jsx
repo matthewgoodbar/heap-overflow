@@ -42,7 +42,10 @@ const Navigation = props => {
         <>
             <header>
                 <div id="navigation">
-                    <NavLink to="/" id="logo">heap<span id="logo-bold">overflow</span></NavLink>
+                    <NavLink to="/" id="logo" >
+                        <img alt="logo-image" className="logo-image" />
+                        heap<span id="logo-bold">overflow</span>
+                    </NavLink>
                     <NavLink to="/about" id="about-button" className="button-small">About</NavLink>
                     <form id="search">
                         <input type="text" placeholder="Search" />

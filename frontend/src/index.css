@@ -19,6 +19,12 @@ h3 {
     font-size: 18px;
 }
 
+.logo-image {
+    content: url('../assets/heapoverflow_icon_512px.png');
+    height: 40px;
+    width: 40px;
+}
+
 .button-light {
     font-size: 12px;
     margin: 0px 2px 0px 2px;
