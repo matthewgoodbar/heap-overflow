@@ -10,6 +10,8 @@ const Answer = ({ answer }) => {
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.currentUser);
+    const [upvoteButtonSubclass, setUpvoteButtonSubclass] = useState("upvote-inactive");
+    const [downvoteButtonSubclass, setDownvoteButtonSubclass] = useState("downvote-inactive");
     const [timestamp, setTimestamp] = useState("");
     const [edit, setEdit] = useState(false);
 
@@ -19,6 +21,23 @@ const Answer = ({ answer }) => {
         }
     }, [answer]);
 
+    useEffect(() => {
+        if (currentUser) {
+            let vote = answer.votes[currentUser.id]
+            if (vote) {
+                if (vote.voteType === "up") {
+                    upvoteIcons();
+                } else {
+                    downvoteIcons();
+                }
+            } else {
+                noVoteIcons();
+            }
+        } else {
+            disableVoteIcons();
+        }
+    }, [currentUser]);
+
     const handleDelete = e => {
         dispatch(deleteAnswer(answer.id));
     };
@@ -27,20 +46,43 @@ const Answer = ({ answer }) => {
         setEdit(prev => !prev);
     };
 
+    const upvoteIcons = () => {
+        setUpvoteButtonSubclass("upvote-active");
+        setDownvoteButtonSubclass("downvote-inactive");
+    };
+
+    const downvoteIcons = () => {
+        setUpvoteButtonSubclass("upvote-inactive");
+        setDownvoteButtonSubclass("downvote-active");
+    };
+
+    const noVoteIcons = () => {
+        setUpvoteButtonSubclass("upvote-inactive");
+        setDownvoteButtonSubclass("downvote-inactive");
+    };
+
+    const disableVoteIcons = () => {
+        setUpvoteButtonSubclass("upvote-disabled");
+        setDownvoteButtonSubclass("downvote-disabled");
+    };
+
     const handleUpvote = e => {
         if (answer.votes[currentUser.id]?.voteType === "down") {
             dispatch(updateVote({
                 id: answer.votes[currentUser.id].id,
                 voteType: "up"
-            }));
+            }))
+                .then(upvoteIcons);
         } else if (answer.votes[currentUser.id]) {
-            dispatch(deleteVote(answer.votes[currentUser.id].id));
+            dispatch(deleteVote(answer.votes[currentUser.id].id))
+                .then(noVoteIcons);
         } else {
             dispatch(createVote({
                 answerId: answer.id,
                 voterId: currentUser.id,
                 voteType: "up"
-            }));
+            }))
+                .then(upvoteIcons);
         }
     };
 
@@ -49,15 +91,18 @@ const Answer = ({ answer }) => {
             dispatch(updateVote({
                 id: answer.votes[currentUser.id].id,
                 voteType: "down"
-            }));
+            }))
+                .then(downvoteIcons);
         } else if (answer.votes[currentUser.id]) {
-            dispatch(deleteVote(answer.votes[currentUser.id].id));
+            dispatch(deleteVote(answer.votes[currentUser.id].id))
+                .then(noVoteIcons);
         } else {
             dispatch(createVote({
                 answerId: answer.id,
                 voterId: currentUser.id,
                 voteType: "down"
-            }));
+            }))
+                .then(downvoteIcons);
         }
     };
 
@@ -68,11 +113,21 @@ const Answer = ({ answer }) => {
     return (
         <>
             { (!edit) &&
-            <div className="answer">
+            <div className="answer answer-display-mode">
                 <div className="vote-gui">
-                    <button className="upvote-button" onClick={handleUpvote}>up</button>
+                    { (currentUser) &&
+                    <img className={`vote-button ${upvoteButtonSubclass}`} onClick={handleUpvote} />
+                    }
+                    { (!currentUser) &&
+                    <img className={`vote-button ${upvoteButtonSubclass}`} />
+                    }
                     <p>{answer.voteSum}</p>
-                    <button className="downvote-button" onClick={handleDownvote}>down</button>
+                    { (currentUser) &&
+                    <img className={`vote-button ${downvoteButtonSubclass}`} onClick={handleDownvote} />
+                    }
+                    { (!currentUser) &&
+                    <img className={`vote-button ${downvoteButtonSubclass}`} />
+                    }
                 </div>
                 <div className="answer-content">
                     <p>{answer.body}</p>
@@ -92,7 +147,7 @@ const Answer = ({ answer }) => {
             </div>
             }
             { (edit) &&
-            <div className="answer">
+            <div className="answer answer-edit-mode">
                 <div id="answer-edit-header">
                     <h3>Edit your answer</h3>
                     <p onClick={toggleEdit} className="button-small">Cancel</p>

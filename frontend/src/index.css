@@ -58,6 +58,46 @@ h3 {
     color: gray;
 }
 
+.vote-gui {
+    min-width: 64px;
+    max-width: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vote-button {
+    width: 32px;
+    height: 32px;
+    margin: 4px 0px 4px 0px;
+    cursor: pointer;
+}
+
+.upvote-inactive {
+    content: url('../assets/upvote_inactive.png');
+}
+
+.upvote-active {
+    content: url('../assets/upvote_active.png');
+}
+
+.upvote-disabled {
+    content: url('../assets/upvote_disabled.png');
+}
+
+.downvote-inactive {
+    content: url('../assets/downvote_inactive.png');
+}
+
+.downvote-active {
+    content: url('../assets/downvote_active.png');
+}
+
+.downvote-disabled {
+    content: url('../assets/downvote_disabled.png');
+}
+
 .author-plaque {
     font-size: 12px;
     text-decoration: none;
