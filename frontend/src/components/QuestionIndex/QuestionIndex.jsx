@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
-import { useQueryParam, NumberParam } from "use-query-params";
+import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 import { clearQuestions, fetchQuestions } from "../../store/question";
 import QuestionPreview from "../QuestionPreview/";
 
@@ -12,15 +12,16 @@ const QuestionIndex = props => {
     const questions = useSelector(state => Object.values(state.questions).reverse());
     const questionCount = useSelector(state => state.questionCount.count);
     const [page, setPage] = useQueryParam('page', NumberParam);
+    const [search, setSearch] = useQueryParam('search', StringParam);
 
     useEffect(() => {
         window.scrollTo(0,0);
         dispatch(clearQuestions());
-        dispatch(fetchQuestions(page))
-        .catch(() => {
-            history.push("/404");
-        });
-    }, [page]);
+        dispatch(fetchQuestions({ page, search }))
+            .catch(() => {
+                history.push("/404");
+            });
+    }, [page, search]);
 
     if (questionCount) {
         const pageOutOfBounds = (questionCount < (page - 1) * 10 || page < 1);

@@ -5,9 +5,17 @@ class Api::QuestionsController < ApplicationController
     
     def index
         items_per_page = 10
-        @page = params[:page].to_i
-        # @questions = Question.all
-        @questions = Question.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (@page - 1))
+        page = params[:page].to_i
+        search_terms = params[:search].split(" ") if params[:search]
+
+        if params[:search]
+            @questions = Question.where("title LIKE ?", "%#{search_terms.join("%")}%")
+                            .or(Question.where("body LIKE ?", "%#{search_terms.join("%")}%"))
+        else
+            @questions = Question.all
+        end
+        @questions = @questions.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (page - 1))
+
         if @questions
             render :index
         else
