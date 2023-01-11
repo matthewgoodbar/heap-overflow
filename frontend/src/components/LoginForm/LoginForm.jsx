@@ -11,6 +11,10 @@ const LoginForm = props => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
     if (currentUser) return <Redirect to="/" />
 
     const handleSubmit = e => {
