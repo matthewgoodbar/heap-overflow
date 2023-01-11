@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
@@ -11,10 +11,19 @@ const QuestionIndex = props => {
     const history = useHistory();
     const questions = useSelector(state => Object.values(state.questions).reverse());
     const questionCount = useSelector(state => state.questionCount.count);
+    const [pageHeader, setPageHeader] = useState("All Questions");
+    const [subtitle, setSubtitle] = useState(" questions asked so far");
     const [page, setPage] = useQueryParam('page', NumberParam);
     const [search, setSearch] = useQueryParam('search', StringParam);
 
     useEffect(() => {
+        if (search) {
+            setPageHeader(`Search results for \"${search}\"`);
+            setSubtitle(" questions match your query");
+        } else {
+            setPageHeader("All Questions");
+            setSubtitle(" questions asked so far");
+        }
         window.scrollTo(0,0);
         dispatch(clearQuestions());
         dispatch(fetchQuestions({ page, search }))
@@ -34,8 +43,8 @@ const QuestionIndex = props => {
         <div id="question-index" className="component-with-sidebar">
             <div id="question-index-header">
                 <div>
-                    <h1>All Questions</h1>
-                    <p>{questionCount} questions asked so far</p>
+                    <h1>{pageHeader}</h1>
+                    <p>{questionCount + subtitle}</p>
                 </div>
                 <NavLink to="/questions/new" className="button-dark">Ask a Question</NavLink>
             </div>

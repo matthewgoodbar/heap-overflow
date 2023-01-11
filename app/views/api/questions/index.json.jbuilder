@@ -9,4 +9,4 @@ json.questions do
         end
     end
 end
-json.question_count Question.all.count
+json.question_count @search_query.count

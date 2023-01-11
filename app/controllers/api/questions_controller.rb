@@ -9,12 +9,12 @@ class Api::QuestionsController < ApplicationController
         search_terms = params[:search].split(" ") if params[:search]
 
         if params[:search]
-            @questions = Question.where("title LIKE ?", "%#{search_terms.join("%")}%")
+            @search_query = Question.where("title LIKE ?", "%#{search_terms.join("%")}%")
                             .or(Question.where("body LIKE ?", "%#{search_terms.join("%")}%"))
         else
-            @questions = Question.all
+            @search_query = Question.all
         end
-        @questions = @questions.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (page - 1))
+        @questions = @search_query.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (page - 1))
 
         if @questions
             render :index
