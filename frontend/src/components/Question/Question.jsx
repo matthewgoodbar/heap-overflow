@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams, useHistory } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { fullTimestamp } from "../../dateUtil";
 import { clearAnswers, fetchAnswersToQuestion } from "../../store/answer";

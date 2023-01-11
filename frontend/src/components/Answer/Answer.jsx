@@ -116,17 +116,17 @@ const Answer = ({ answer }) => {
             <div className="answer answer-display-mode">
                 <div className="vote-gui">
                     { (currentUser) &&
-                    <img className={`vote-button ${upvoteButtonSubclass}`} onClick={handleUpvote} />
+                    <img alt="upvote-button" className={`vote-button ${upvoteButtonSubclass}`} onClick={handleUpvote} />
                     }
                     { (!currentUser) &&
-                    <img className={`vote-button ${upvoteButtonSubclass}`} />
+                    <img alt="upvote-button" className={`vote-button ${upvoteButtonSubclass}`} />
                     }
                     <p>{answer.voteSum}</p>
                     { (currentUser) &&
-                    <img className={`vote-button ${downvoteButtonSubclass}`} onClick={handleDownvote} />
+                    <img alt="downvote-button" className={`vote-button ${downvoteButtonSubclass}`} onClick={handleDownvote} />
                     }
                     { (!currentUser) &&
-                    <img className={`vote-button ${downvoteButtonSubclass}`} />
+                    <img alt="downvote-button" className={`vote-button ${downvoteButtonSubclass}`} />
                     }
                 </div>
                 <div className="answer-content">
