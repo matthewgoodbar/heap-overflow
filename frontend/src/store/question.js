@@ -29,6 +29,7 @@ export const fetchQuestions = ({ page, search }) => async dispatch => {
     page ||= 1;
     let res;
     if (search) {
+        console.log(search);
         res = await csrfFetch(`/api/questions/?search=${search}&page=${page}`);
     } else {
         res = await csrfFetch(`/api/questions/?page=${page}`);

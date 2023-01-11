@@ -1,11 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
+import { useState } from "react";
 
 const Navigation = props => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const currentUser = useSelector(state => state.session.currentUser);
+    const [search, setSearch] = useState("");
 
     const handleLogOut = e => {
         dispatch(sessionActions.logout());
@@ -17,6 +20,7 @@ const Navigation = props => {
 
     const handleSearch = e => {
         e.preventDefault();
+        history.push(`/questions/?search=${search.replaceAll(" ", "+")}&page=1`);
     };
 
     let sessionLinks;
@@ -47,8 +51,9 @@ const Navigation = props => {
                         heap<span id="logo-bold">overflow</span>
                     </NavLink>
                     <NavLink to="/about" id="about-button" className="button-small">About</NavLink>
-                    <form id="search">
-                        <input type="text" placeholder="Search" />
+                    <form id="search" onSubmit={handleSearch}>
+                        <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Enter keywords" />
+                        <button className="button-dark">Search</button>
                     </form>
                     {sessionLinks}
                 </div>
