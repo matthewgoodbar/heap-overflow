@@ -16,7 +16,7 @@ const Question = props => {
     const [timestamp, setTimestamp] = useState("");
     const question = useSelector(state => state.questions[questionId]);
     const currentUser = useSelector(state => state.session.currentUser);
-    const answers = useSelector(state => Object.values(state.answers));
+    const answers = useSelector(state => Object.values(state.answers).sort((a, b) => b.voteSum - a.voteSum));
 
     useEffect(() => {
         window.scrollTo(0,0);
