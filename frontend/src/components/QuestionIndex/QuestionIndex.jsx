@@ -9,12 +9,27 @@ const QuestionIndex = props => {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const questions = useSelector(state => Object.values(state.questions).reverse());
-    const questionCount = useSelector(state => state.questionCount.count);
     const [pageHeader, setPageHeader] = useState("All Questions");
     const [subtitle, setSubtitle] = useState(" questions asked so far");
     const [page, setPage] = useQueryParam('page', NumberParam);
     const [search, setSearch] = useQueryParam('search', StringParam);
+    const [order, setOrder] = useState("NEWEST");
+    const questionCount = useSelector(state => state.questionCount.count);
+    const orderQuestions = (questionArray) => {
+        if (questionArray) {
+            switch (order) {
+                case "NEWEST":
+                    return questionArray.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+                case "OLDEST":
+                    return questionArray.sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+                case "MOST_ANSWERED":
+                    return questionArray.sort((a,b) => b.answerCount - a.answerCount);
+                case "LEAST_ANSWERED":
+                    return questionArray.sort((a,b) => a.answerCount - b.answerCount);
+            }
+        }
+    };
+    const questions = useSelector(state => orderQuestions(Object.values(state.questions)));
 
     useEffect(() => {
         if (search) {
@@ -26,11 +41,11 @@ const QuestionIndex = props => {
         }
         window.scrollTo(0,0);
         dispatch(clearQuestions());
-        dispatch(fetchQuestions({ page, search }))
+        dispatch(fetchQuestions({ page, search, order }))
             .catch(() => {
                 history.push("/404");
             });
-    }, [page, search]);
+    }, [page, search, order]);
 
     if (questionCount) {
         const pageOutOfBounds = (questionCount < (page - 1) * 10 || page < 1);
@@ -47,6 +62,16 @@ const QuestionIndex = props => {
                     <p>{questionCount + subtitle}</p>
                 </div>
                 <NavLink to="/questions/new" className="button-dark">Ask a Question</NavLink>
+            </div>
+            <div className="order-buttons">
+                <button className={order === "NEWEST" ? "button-dark" : "button-light"}
+                        onClick={e => {setOrder("NEWEST"); setPage(1)}}>Newest</button>
+                <button className={order === "OLDEST" ? "button-dark" : "button-light"}
+                        onClick={e => {setOrder("OLDEST"); setPage(1)}}>Oldest</button>
+                <button className={order === "MOST_ANSWERED" ? "button-dark" : "button-light"}
+                        onClick={e => {setOrder("MOST_ANSWERED"); setPage(1)}}>Most Answered</button>
+                <button className={order === "LEAST_ANSWERED" ? "button-dark" : "button-light"}
+                        onClick={e => {setOrder("LEAST_ANSWERED"); setPage(1)}}>Least Answered</button>
             </div>
             <ul id="question-list">
                 {questions &&

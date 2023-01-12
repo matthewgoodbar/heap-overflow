@@ -18,7 +18,30 @@ class Api::QuestionsController < ApplicationController
         else
             @search_query = Question.all
         end
-        @questions = @search_query.order(created_at: :desc).limit(items_per_page).offset(items_per_page * (page - 1))
+
+        order_parameter = params[:order]
+        case order_parameter
+        when "NEWEST"
+            @order_query = @search_query.order(created_at: :desc)
+        when "OLDEST"
+            @order_query = @search_query.order(created_at: :asc)
+        when "MOST_ANSWERED"
+            @order_query = @search_query
+                .left_joins(:answers)
+                .group('questions.id')
+                .order('COUNT(answers.id) DESC')
+            # @questions = @search_query.sort {|a,b| a.answer_count <=> b.answer_count}
+        when "LEAST_ANSWERED"
+            @order_query = @search_query
+                .left_joins(:answers)
+                .group('questions.id')
+                .order('COUNT(answers.id) ASC')
+            # @questions = @search_query.sort {|a,b| b.answer_count <=> a.answer_count}
+        else
+        end
+
+        @questions = @order_query.limit(items_per_page).offset(items_per_page * (page - 1))
+        
 
         if @questions
             render :index

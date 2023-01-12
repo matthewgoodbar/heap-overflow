@@ -60,6 +60,12 @@ h3 {
     background-color: rgb(225, 236, 244);
 }
 
+.order-buttons {
+    display: flex;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+}
+
 .timestamp {
     color: gray;
 }

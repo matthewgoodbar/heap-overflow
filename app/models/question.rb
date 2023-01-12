@@ -21,4 +21,8 @@ class Question < ApplicationRecord
     belongs_to :author,
         foreign_key: :author_id,
         class_name: :User
+
+    def answer_count
+        return self.answers.count
+    end
 end

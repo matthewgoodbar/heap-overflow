@@ -25,13 +25,14 @@ export const clearQuestions = () => ({
     type: CLEAR_QUESTIONS
 });
 
-export const fetchQuestions = ({ page, search }) => async dispatch => {
+export const fetchQuestions = ({ page, search, order }) => async dispatch => {
     page ||= 1;
+    order ||= "NEWEST";
     let res;
     if (search) {
-        res = await csrfFetch(`/api/questions/?search=${search}&page=${page}`);
+        res = await csrfFetch(`/api/questions/?search=${search}&page=${page}&order=${order}`);
     } else {
-        res = await csrfFetch(`/api/questions/?page=${page}`);
+        res = await csrfFetch(`/api/questions/?page=${page}&order=${order}`);
     }
     const resClone = res.clone();
     if (res.ok) {
