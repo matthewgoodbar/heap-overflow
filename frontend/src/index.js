@@ -11,6 +11,7 @@ import configureStore from './store';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 import * as questionActions from './store/question';
+import * as userActions from './store/user';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.questionActions = questionActions;
+  window.userActions = userActions;
 }
 
 const Root = () => {
