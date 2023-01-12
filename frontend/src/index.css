@@ -3,7 +3,7 @@
     margin-top: 70px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     min-height: 100vh;
 }
 

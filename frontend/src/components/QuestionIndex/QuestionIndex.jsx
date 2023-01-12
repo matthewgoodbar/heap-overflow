@@ -34,7 +34,7 @@ const QuestionIndex = props => {
     useEffect(() => {
         if (search) {
             setPageHeader(`Search results for \"${search}\"`);
-            setSubtitle(" questions match your query");
+            setSubtitle(" relevant question(s) found");
         } else {
             setPageHeader("All Questions");
             setSubtitle(" questions asked so far");

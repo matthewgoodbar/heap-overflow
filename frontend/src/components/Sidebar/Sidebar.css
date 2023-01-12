@@ -1,9 +1,19 @@
 #sidebar {
     width: 164px;
-    height: 750px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    align-content: stretch;
+}
+
+.sidebar-link-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-self: flex-start;
+    position: sticky;
+    top: 50px;
 }
 
 .sidebar-link {

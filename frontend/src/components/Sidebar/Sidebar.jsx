@@ -9,9 +9,11 @@ const Sidebar = props => {
     
     return (
         <div id="sidebar">
-            <NavLink exact to="/" className="sidebar-link">Home</NavLink>
-            <NavLink to="/questions" activeClassName="sidebar-selected" className="sidebar-link">Questions</NavLink>
-            <NavLink exact to="/users" activeClassName="sidebar-selected" className="sidebar-link">Users</NavLink>
+            <div className="sidebar-link-container">
+                <NavLink exact to="/" className="sidebar-link">Home</NavLink>
+                <NavLink to="/questions" activeClassName="sidebar-selected" className="sidebar-link">Questions</NavLink>
+                <NavLink exact to="/users" activeClassName="sidebar-selected" className="sidebar-link">Users</NavLink>
+            </div>
         </div>
     );
 };
