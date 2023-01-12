@@ -1,7 +1,6 @@
 
 const REFRESH_QUESTION_COUNT = 'questions/REFRESH_QUESTION_COUNT';
 
-
 export const refreshQuestionCount = (count) => ({
     type: REFRESH_QUESTION_COUNT,
     count

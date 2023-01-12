@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { refreshUserCount } from "./userCount";
 
 const ADD_USER = 'users/ADD_USER';
 const ADD_USERS = 'users/ADD_USERS';
@@ -29,6 +30,7 @@ export const fetchUser = (userId) => async dispatch => {
 };
 
 export const fetchUsers = ({ page, search }) => async dispatch => {
+    page ||= 1;
     let res;
     if (search) {
         res = await csrfFetch(`/api/users/?search=${search}&page=${page}`);
@@ -39,6 +41,7 @@ export const fetchUsers = ({ page, search }) => async dispatch => {
     if (res.ok) {
         const data = await res.json();
         dispatch(addUsers(data.users));
+        dispatch(refreshUserCount(data.userCount));
     }
     return resClone;
 };

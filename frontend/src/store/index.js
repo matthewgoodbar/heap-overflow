@@ -5,13 +5,15 @@ import questionsReducer from "./question";
 import questionCountReducer from "./questionCount";
 import answersReducer from "./answer";
 import usersReducer from "./user";
+import userCountReducer from "./userCount";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   questions: questionsReducer,
   questionCount: questionCountReducer,
   answers: answersReducer,
-  users: usersReducer
+  users: usersReducer,
+  userCount: userCountReducer
 });
 
 let enhancer;
