@@ -41,6 +41,18 @@ class User < ApplicationRecord
         foreign_key: :voter_id,
         class_name: :Vote,
         dependent: :destroy
+    
+    has_many :votes_from_others,
+        through: :answers,
+        source: :votes
+    
+    has_many :voted_answers,
+        through: :votes,
+        source: :answer
+
+    def karma
+        return self.votes_from_others.where(vote_type: "up").count
+    end
 
     def self.find_by_credentials(credential, password)
         if (URI::MailTo::EMAIL_REGEXP.match(credential))

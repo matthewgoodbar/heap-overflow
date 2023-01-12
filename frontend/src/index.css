@@ -190,3 +190,15 @@ h3 {
     background-color: rgb(248, 179, 179);
     border: 1px solid rgb(180, 91, 91);
 }
+
+.under-construction-1 {
+    content: url('../assets/under_construction_1.gif');
+}
+
+.under-construction-2 {
+    content: url('../assets/under_construction_2.gif');
+}
+
+.under-construction-3 {
+    content: url('../assets/under_construction_3.gif');
+}
