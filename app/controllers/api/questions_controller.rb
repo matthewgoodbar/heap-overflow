@@ -6,13 +6,13 @@ class Api::QuestionsController < ApplicationController
     def index
         items_per_page = 10
         page = params[:page].to_i
-        search_terms = params[:search].split(" ") if params[:search]
+        search_terms = params[:search].downcase.split(" ") if params[:search]
 
         if params[:search]
             @search_query = []
             search_terms.each do |term|
-                @search_query << Question.where("questions.title LIKE ?", "%#{term}%")
-                                    .or(Question.where("questions.body LIKE ?", "%#{term}%"))
+                @search_query << Question.where("LOWER(questions.title) LIKE ?", "%#{term}%")
+                                    .or(Question.where("LOWER(questions.body) LIKE ?", "%#{term}%"))
             end
             @search_query = @search_query.reduce(:and)
         else
