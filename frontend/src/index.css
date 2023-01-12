@@ -31,7 +31,7 @@ h3 {
     width: 1536px;
     position: fixed;
     top: -200px;
-    right: -250px;
+    left: 700px;
     z-index: -1;
 }
 
