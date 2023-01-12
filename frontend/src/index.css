@@ -25,12 +25,23 @@ h3 {
     width: 40px;
 }
 
+.logo-big {
+    content: url('../assets/heapoverflow_icon_2048px.png');
+    height: 1536px;
+    width: 1536px;
+    position: fixed;
+    top: -200px;
+    right: -250px;
+    z-index: -1;
+}
+
 .button-light {
     font-size: 12px;
     margin: 0px 2px 0px 2px;
     padding: 8px 10.4px 8px 10.4px;
     background-color: rgb(225, 236, 244);
     color: rgb(57, 115, 157);
+    border-radius: 4px;
     border: solid rgb(122, 167, 199) 1px;
     text-decoration: none;
     cursor: pointer;
@@ -42,6 +53,7 @@ h3 {
     padding: 8px 10.4px 8px 10.4px;
     background-color: rgb(10, 149, 255);
     color: rgb(255, 255, 255);
+    border-radius: 4px;
     border: solid rgb(200, 200, 200) 1px;
     text-decoration: none;
     cursor: pointer;

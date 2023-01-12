@@ -14,6 +14,9 @@ import QuestionForm from "./components/QuestionForm";
 const App = props => {
   return (
     <>
+      <Route exact path="/">
+        <img className="logo-big" alt="heap-overflow-logo" />
+      </Route>
       <Navigation />
       <div id="page-content">
         <Switch>
