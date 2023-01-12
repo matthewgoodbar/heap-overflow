@@ -11,8 +11,8 @@ class Api::QuestionsController < ApplicationController
         if params[:search]
             @search_query = []
             search_terms.each do |term|
-                @search_query << Question.where("title LIKE ?", "%#{term}%")
-                                    .or(Question.where("body LIKE ?", "%#{term}%"))
+                @search_query << Question.where("questions.title LIKE ?", "%#{term}%")
+                                    .or(Question.where("questions.body LIKE ?", "%#{term}%"))
             end
             @search_query = @search_query.reduce(:and)
         else
