@@ -25,6 +25,13 @@ h3 {
     width: 40px;
 }
 
+.logo-footer {
+    content: url('../assets/heapoverflow_icon_512px.png');
+    display: block;
+    height: 60px;
+    width: 60px;
+}
+
 .logo-big {
     content: url('../assets/heapoverflow_icon_2048px.png');
     filter: blur(8px);

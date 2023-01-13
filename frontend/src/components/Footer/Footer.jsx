@@ -5,7 +5,7 @@ const Footer = props => {
         <footer id="footer">
             <div className="footer-compartment">
                 <Link to="/">
-                    <img className="logo-image" alt="heap-overflow-logo" />
+                    <img className="logo-footer" alt="heap-overflow-logo" />
                 </Link>
             </div>
             <div className="footer-compartment footer-compartment-border">
@@ -15,7 +15,7 @@ const Footer = props => {
             </div>
             <div className="footer-compartment footer-compartment-border">
                 <Link className="footer-link" to="/404">About</Link>
-                <Link className="footer-link" to="/404">Github</Link>
+                <a className="footer-link" href="https://github.com/matthewgoodbar">Github</a>
                 <Link className="footer-link" to="/404">LinkedIn</Link>
             </div>
         </footer>
