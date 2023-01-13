@@ -1,0 +1,8 @@
+.user-preview {
+    border-top: solid lightgray 1px;
+    padding: 8px 0px 8px 0px;
+}
+
+.user-preview  > p {
+    color: gray;
+}

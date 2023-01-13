@@ -23,7 +23,10 @@ const Answer = ({ answer }) => {
 
     useEffect(() => {
         if (currentUser) {
-            let vote = answer.votes[currentUser.id]
+            let vote;
+            if (answer.votes) {
+                vote = answer.votes[currentUser.id];
+            }
             if (vote) {
                 if (vote.voteType === "up") {
                     upvoteIcons();
@@ -67,15 +70,24 @@ const Answer = ({ answer }) => {
     };
 
     const handleUpvote = e => {
-        if (answer.votes[currentUser.id]?.voteType === "down") {
-            dispatch(updateVote({
-                id: answer.votes[currentUser.id].id,
-                voteType: "up"
-            }))
-                .then(upvoteIcons);
-        } else if (answer.votes[currentUser.id]) {
-            dispatch(deleteVote(answer.votes[currentUser.id].id))
-                .then(noVoteIcons);
+        if (answer.votes){
+            if (answer.votes[currentUser.id]?.voteType === "down") {
+                dispatch(updateVote({
+                    id: answer.votes[currentUser.id].id,
+                    voteType: "up"
+                }))
+                    .then(upvoteIcons);
+            } else if (answer.votes[currentUser.id]) {
+                dispatch(deleteVote(answer.votes[currentUser.id].id))
+                    .then(noVoteIcons);
+            } else {
+                dispatch(createVote({
+                    answerId: answer.id,
+                    voterId: currentUser.id,
+                    voteType: "up"
+                }))
+                    .then(upvoteIcons);
+            }
         } else {
             dispatch(createVote({
                 answerId: answer.id,
@@ -87,15 +99,24 @@ const Answer = ({ answer }) => {
     };
 
     const handleDownvote = e => {
-        if (answer.votes[currentUser.id]?.voteType === "up") {
-            dispatch(updateVote({
-                id: answer.votes[currentUser.id].id,
-                voteType: "down"
-            }))
-                .then(downvoteIcons);
-        } else if (answer.votes[currentUser.id]) {
-            dispatch(deleteVote(answer.votes[currentUser.id].id))
-                .then(noVoteIcons);
+        if (answer.votes) {
+            if (answer.votes[currentUser.id]?.voteType === "up") {
+                dispatch(updateVote({
+                    id: answer.votes[currentUser.id].id,
+                    voteType: "down"
+                }))
+                    .then(downvoteIcons);
+            } else if (answer.votes[currentUser.id]) {
+                dispatch(deleteVote(answer.votes[currentUser.id].id))
+                    .then(noVoteIcons);
+            } else {
+                dispatch(createVote({
+                    answerId: answer.id,
+                    voterId: currentUser.id,
+                    voteType: "down"
+                }))
+                    .then(downvoteIcons);
+            }
         } else {
             dispatch(createVote({
                 answerId: answer.id,

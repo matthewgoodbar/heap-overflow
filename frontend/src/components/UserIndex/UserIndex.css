@@ -1,0 +1,14 @@
+#user-index-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-left: 16px;
+}
+
+#user-index-header > div > p {
+    color: gray;
+}
+
+#user-list > * {
+    padding-left: 16px;
+}

@@ -4,6 +4,7 @@ import { clearUsers, fetchUsers } from "../../store/user";
 import { useQueryParam, NumberParam, StringParam } from "use-query-params";
 import { useHistory } from "react-router";
 import { Redirect } from "react-router-dom";
+import UserPreview from "../UserPreview";
 
 const UserIndex = props => {
 
@@ -50,11 +51,13 @@ const UserIndex = props => {
     return (
         <div id="user-index" className="component-with-sidebar">
             <div id="user-index-header">
-                <h1>{pageHeader}</h1>
-                <p>{userCount + subtitle}</p>
+                <div>
+                    <h1>{pageHeader}</h1>
+                    <p>{userCount + subtitle}</p>
+                </div>
             </div>
             <ul id="user-list">
-
+                {users.map((user) => <UserPreview key={user.id} user={user} />)}
             </ul>
             <div className="page-buttons">
                 { (page !== 1) &&
