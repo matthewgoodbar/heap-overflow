@@ -22,7 +22,8 @@ class Answer < ApplicationRecord
     
     has_many :votes,
         foreign_key: :answer_id,
-        class_name: :Vote
+        class_name: :Vote,
+        dependent: :destroy
     
     def vote_sum
         up_votes = self.votes.where(vote_type: "up").count
