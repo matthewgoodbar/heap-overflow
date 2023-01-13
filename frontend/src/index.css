@@ -27,11 +27,13 @@ h3 {
 
 .logo-big {
     content: url('../assets/heapoverflow_icon_2048px.png');
-    height: 1536px;
-    width: 1536px;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 150vh;
+    width: auto;
     position: fixed;
     top: -200px;
-    left: 700px;
+    right: -300px;
     z-index: -1;
 }
 
