@@ -1,4 +1,4 @@
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
 import { useState } from "react";
@@ -27,7 +27,7 @@ const Navigation = props => {
     if (currentUser) {
         sessionLinks = (
             <ul id="account-buttons">
-                <li><a className="button-light">Account</a></li>
+                <li><Link to={`/users/${currentUser.id}`} className="button-light">Account</Link></li>
                 {/* <button onClick={handleLogOut}>Log Out</button> */}
                 <li><a className="button-dark" onClick={handleLogOut}>Log Out</a></li>
             </ul>

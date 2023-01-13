@@ -9,6 +9,7 @@ import SignupForm from "./components/SignupForm";
 import QuestionIndex from "./components/QuestionIndex";
 import Question from "./components/Question";
 import UserIndex from "./components/UserIndex";
+import User from "./components/User";
 import Sidebar from "./components/Sidebar";
 import QuestionForm from "./components/QuestionForm";
 
@@ -49,6 +50,10 @@ const App = props => {
           <Route exact path="/users">
             <Sidebar />
             <UserIndex />
+          </Route>
+          <Route exact path="/users/:userId">
+            <Sidebar />
+            <User />
           </Route>
           <Route path="/404">
             <Sidebar />
