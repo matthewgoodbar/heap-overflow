@@ -1,0 +1,19 @@
+#splash {
+    padding-top: 20px;
+}
+
+.splash-header {
+    font-size: 40px;
+}
+
+.splash-text {
+    font-size: 20px;
+}
+
+.splash-bold {
+    font-weight: bold;
+}
+
+.splash-button {
+    font-size: 20px;
+}

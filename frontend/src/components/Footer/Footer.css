@@ -3,4 +3,26 @@
     height: 322px;
     margin-top: 20px;
     background-color: rgb(35, 38, 41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-compartment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 150px;
+}
+
+.footer-link {
+    color: lightgray;
+    text-decoration: none;
+    padding: 4px;
+}
+
+.footer-compartment-border {
+    border-left: 1px solid lightgray;
 }
