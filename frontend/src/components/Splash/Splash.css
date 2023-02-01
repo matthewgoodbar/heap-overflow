@@ -17,3 +17,71 @@
 .splash-button {
     font-size: 20px;
 }
+
+.splash-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.splash-points {
+    padding-left: 4vw;
+}
+
+.bubble-left {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgb(174, 228, 174);
+}
+
+.bubble-right {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgb(174, 202, 255);
+}
+
+.bubble-left-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.bubble-right-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 20px;
+}
+
+.bubble-left-tail {
+    width: 0px;
+    height: 0px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid rgb(174, 228, 174);
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
+.bubble-right-tail {
+    width: 0px;
+    height: 0px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid rgb(174, 202, 255);
+    margin-top: -30px;
+    margin-bottom: -30px;
+}
+
+.bubble-left-combined {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bubble-right-combined {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}  
