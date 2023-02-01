@@ -33,6 +33,20 @@ h3 {
     width: 40px;
 }
 
+.linkedin-image-gray {
+    content: url('../assets/linkedin-logo-gray.png');
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
+.github-image-gray {
+    content: url('../assets//github-logo-gray.png');
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
 .logo-image {
     content: url('../assets/heapoverflow_icon_512px.png');
     height: 40px;

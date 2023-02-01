@@ -16,6 +16,13 @@
     top: 50px;
 }
 
+.sidebar-logo-links {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+}
+
 .sidebar-link {
     padding: 16px 16px 16px 8px;
     color: gray;
