@@ -21,7 +21,7 @@
 .splash-button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .splash-points {
@@ -45,6 +45,7 @@
     justify-content: flex-start;
     width: 100%;
     padding-left: 20px;
+    margin-bottom: -10px;
 }
 
 .bubble-right-container {
@@ -52,6 +53,7 @@
     justify-content: flex-end;
     width: 100%;
     padding-right: 20px;
+    margin-bottom: -10px;
 }
 
 .bubble-left-tail {
@@ -84,4 +86,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}  
+}
+
+.link-bubble {
+    display: flex;
+    gap: 10px;
+}

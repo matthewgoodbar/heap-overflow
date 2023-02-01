@@ -64,6 +64,15 @@ const Splash = props => {
                     <div className="bubble-left-tail"></div>
                 </div>
             </div>
+            <div className="bubble-right-container">
+                <div className="bubble-right-combined">
+                    <div className="bubble-right link-bubble">
+                        <a href="https://www.linkedin.com/in/matthew-goodbar-671a24169/"><img className="linkedin-image" alt="linkedin logo" /></a>
+                        <a href="https://github.com/matthewgoodbar"><img className="github-image" alt="github logo" /></a>
+                    </div>
+                    <div className="bubble-right-tail"></div>
+                </div>
+            </div>
             {/* {currentUser &&
             <>
                 <p className="splash-text">You are currently logged in as: {currentUser.username}</p>
