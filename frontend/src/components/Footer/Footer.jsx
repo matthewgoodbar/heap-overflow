@@ -15,8 +15,8 @@ const Footer = props => {
             </div>
             <div className="footer-compartment footer-compartment-border">
                 <Link className="footer-link" to="/404">About</Link>
-                <a className="footer-link" href="https://github.com/matthewgoodbar">Github</a>
-                <a className="footer-link" href="https://www.linkedin.com/in/matthew-goodbar-671a24169/">LinkedIn</a>
+                <a className="footer-link" href="https://github.com/matthewgoodbar" target="_blank">Github</a>
+                <a className="footer-link" href="https://www.linkedin.com/in/matthew-goodbar-671a24169/" target="_blank">LinkedIn</a>
             </div>
         </footer>
     );
