@@ -198,7 +198,7 @@ h3 {
 
 .qa-form-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     width: fit-content;
     margin: 8px 0px 0px 16px;
     padding: 20px;
@@ -209,6 +209,7 @@ h3 {
 .qa-help-errors {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 16px;
 }
 
@@ -226,11 +227,22 @@ h3 {
     padding: 8px;
 }
 
+.signup-help-errors-box {
+    color: rgb(75, 75, 75);
+    width: 350px;
+    margin-left: 16px;
+    padding: 8px;
+}
+
 .qa-help-errors-box > ul {
     list-style: inside;
 }
 
 .login-help-errors-box > ul {
+    list-style: inside;
+}
+
+.signup-help-errors-box > ul {
     list-style: inside;
 }
 

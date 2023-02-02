@@ -8,16 +8,9 @@
 }
 
 #signup-form {
+    display: flex;
     padding: 20px;
     margin: 10vh 50px 50px 50px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 5px 5px,
                 rgba(0, 0, 0, 0.05) 5px 5px 0px 0px;
-}
-
-h2 {
-    font-size: 24px;
-}
-
-#error-list {
-    list-style: disc;
 }
