@@ -115,6 +115,11 @@ h3 {
     padding: 8px 0px 8px 16px;
 }
 
+.login-signup-button {
+    display: block;
+    margin: auto;
+}
+
 .timestamp {
     color: gray;
 }
@@ -214,7 +219,18 @@ h3 {
     padding: 8px;
 }
 
+.login-help-errors-box {
+    color: rgb(75, 75, 75);
+    width: 200px;
+    margin-left: 16px;
+    padding: 8px;
+}
+
 .qa-help-errors-box > ul {
+    list-style: inside;
+}
+
+.login-help-errors-box > ul {
     list-style: inside;
 }
 

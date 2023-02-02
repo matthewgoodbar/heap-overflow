@@ -42,8 +42,8 @@ const LoginForm = props => {
     return (
         <div id="login-form-container">
             <div id="login-form">
-                <h2>Log In</h2>
                 <form onSubmit={handleSubmit}>
+                    <h2>Log In</h2>
                     <label>Username or Email <br/>
                         <input 
                         type="text" 
@@ -60,17 +60,16 @@ const LoginForm = props => {
                         required />
                     </label>
                     <br/>
-                    <button type="submit">Log In</button>
+                    <button type="submit" className="button-dark login-signup-button">Log In</button>
                 </form>
+                {errors.length > 0 && 
+                    <div className="login-help-errors-box errors-color">
+                        <ul>
+                            {errors.map(error => <li key={error}>{error}</li>)}
+                        </ul>
+                    </div>
+                }
             </div>
-            {errors.length > 0 && 
-                <>
-                    <ul id="error-list">
-                        {errors.map(error => <li key={error}>{error}</li>)}
-                    </ul>
-                    <br/>
-                </>
-            }
             <p>Don't have an account? <NavLink to="/signup">Sign Up</NavLink></p>
         </div>
     );
