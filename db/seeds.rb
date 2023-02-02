@@ -30,19 +30,47 @@ ApplicationRecord.transaction do
 
     puts "Creating questions..."
     40.times do
+      fake_title = [
+        "Do #{Faker::Hacker.adjective} #{(Faker::Hacker.noun).pluralize} #{Faker::Hacker.verb} #{Faker::Hacker.adjective} #{(Faker::Hacker.noun).pluralize}?",
+        "How can I #{Faker::Hacker.verb} my #{Faker::Hacker.adjective} #{Faker::Hacker.noun}?",
+        "Does anyone know whether or not #{Faker::Hacker.abbreviation} #{(Faker::Hacker.noun).pluralize} #{Faker::Hacker.verb} #{(Faker::Hacker.noun).pluralize}?",
+        "My #{Faker::Hacker.abbreviation} #{Faker::Hacker.noun} just died. Am I screwed?",
+        "Where can I find #{Faker::Hacker.abbreviation} #{(Faker::Hacker.noun).pluralize} for cheap?"
+      ].sample(1).first
+      fake_body = [
+        "I tried to #{Faker::Hacker.verb} the #{Faker::Hacker.noun} but it didn't work.",
+        "I tried looking it up, but it seems like most #{(Faker::Hacker.noun).pluralize} are #{Faker::Hacker.adjective}.",
+        "Help!!!!!",
+        "Anybody had this issue before?",
+        "My #{Faker::Hacker.adjective} #{Faker::Hacker.noun} is also a #{Faker::Hacker.abbreviation} #{Faker::Hacker.noun}",
+        "Context: my #{Faker::Hacker.abbreviation} #{Faker::Hacker.noun} recently #{Faker::Hacker.verb} the #{(Faker::Hacker.noun).pluralize}.",
+        "I tried doing a #{Faker::Hacker.abbreviation} #{Faker::Hacker.verb} over the #{Faker::Hacker.abbreviation} but to no avail."
+      ]
       Question.create!({
         author_id: User.order(Arel.sql('RANDOM()')).first.id,
-        title: Faker::Lorem.question(word_count: 5),
-        body: Faker::Lorem.paragraph(sentence_count: 14, random_sentences_to_add: 10)
+        title: fake_title,
+        body: fake_body.sample(2).join(" ")
       })
     end
 
     puts "Creating answers..."
     60.times do
+      fake_answer_snippets = [
+        "Have you tried doing a #{Faker::Hacker.abbreviation} #{Faker::Hacker.verb} on the #{Faker::Hacker.adjective} #{Faker::Hacker.noun}?",
+        "Maybe the #{Faker::Hacker.abbreviation} became #{Faker::Hacker.adjective}.",
+        "Sounds like a #{Faker::Hacker.abbreviation} problem.",
+        "Doing a #{Faker::Hacker.adjective} #{Faker::Hacker.verb} over the #{Faker::Hacker.abbreviation} is never a good idea.",
+        "I wouldn't #{Faker::Hacker.verb} #{(Faker::Hacker.noun).pluralize} if I were you.",
+        "You might have better luck doing a #{Faker::Hacker.abbreviation} #{Faker::Hacker.verb} on your #{Faker::Hacker.adjective} #{Faker::Hacker.noun}.",
+        "Don't sweat it if you can't #{Faker::Hacker.verb} your #{Faker::Hacker.abbreviation} right away.",
+        "I've run into this exact issue.",
+        "Try making your #{(Faker::Hacker.noun).pluralize} #{Faker::Hacker.adjective}.",
+        "#{(Faker::Hacker.ingverb).capitalize} your #{Faker::Hacker.abbreviation} #{(Faker::Hacker.noun).pluralize} might be your best bet."
+      ]
       Answer.create!({
         author_id: User.order(Arel.sql('RANDOM()')).first.id,
         question_id: Question.order(Arel.sql('RANDOM()')).first.id,
-        body: Faker::Lorem.paragraph(sentence_count: 10, random_sentences_to_add: 15)
+        body: fake_answer_snippets.sample(3).join(" ")
       })
     end
 
