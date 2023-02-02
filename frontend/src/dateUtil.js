@@ -4,6 +4,11 @@ export const partialTimestamp = (rawDate) => {
     return dateObj.toLocaleTimeString() + " on " + dateObj.toLocaleDateString();
 };
 
+export const dateStamp = (rawDate) => {
+    let dateObj = new Date(rawDate);
+    return dateObj.toLocaleDateString();
+}
+
 export const fullTimestamp = (record) => {
     if (record.createdAt === record.updatedAt) {
         return partialTimestamp(record.createdAt);

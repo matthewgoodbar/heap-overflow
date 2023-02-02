@@ -19,7 +19,7 @@ const UserIndex = props => {
 
     useEffect(() => {
         if (search) {
-            setPageHeader(`Search results for \"${search}\"`);
+            setPageHeader(`Search results for "${search}"`);
             setSubtitle(" user(s) found");
         } else {
             setPageHeader("All Users");
@@ -37,14 +37,6 @@ const UserIndex = props => {
         const pageOutOfBounds = (userCount < (page - 1) * 10 || page < 1);
         if (pageOutOfBounds) return <Redirect to="/404" />
     }
-
-    if (true) return (
-        <div id="user-index" className="component-with-sidebar">
-            <img className="under-construction-1" alt="construction gif" />
-            <img className="under-construction-2" alt="construction gif" />
-            <img className="under-construction-3" alt="construction gif" />
-        </div>
-    );
 
     if (!page) return <Redirect to="/users?page=1"/>
 
