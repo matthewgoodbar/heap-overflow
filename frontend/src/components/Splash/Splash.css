@@ -37,7 +37,7 @@
 .bubble-right {
     padding: 20px;
     border-radius: 8px;
-    background-color: rgb(174, 202, 255);
+    background-color: rgb(193, 225, 248);
 }
 
 .bubble-left-container {
@@ -71,7 +71,7 @@
     height: 0px;
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
-    border-right: 30px solid rgb(174, 202, 255);
+    border-right: 30px solid rgb(193, 225, 248);
     margin-top: -30px;
     margin-bottom: -30px;
 }
