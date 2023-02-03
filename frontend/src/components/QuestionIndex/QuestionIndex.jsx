@@ -33,7 +33,7 @@ const QuestionIndex = props => {
 
     useEffect(() => {
         if (search) {
-            setPageHeader(`Search results for \"${search}\"`);
+            setPageHeader(`Search results for "${search}"`);
             setSubtitle(" relevant question(s) found");
         } else {
             setPageHeader("All Questions");

@@ -43,6 +43,16 @@ export const fetchQuestions = ({ page, search, order }) => async dispatch => {
     return resClone;
 };
 
+export const fetchQuestionsByAuthor = (authorId) => async dispatch => {
+    const res = await csrfFetch(`/api/questions/?author=${authorId}`);
+    const resClone = res.clone();
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addQuestions(data.questions));
+    }
+    return resClone;
+}
+
 export const fetchQuestion = (questionId) => async dispatch => {
     const res = await csrfFetch(`/api/questions/${questionId}`);
     const resClone = res.clone();

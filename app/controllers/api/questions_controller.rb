@@ -4,6 +4,16 @@ class Api::QuestionsController < ApplicationController
     wrap_parameters include: Question.attribute_names + ['authorId']
     
     def index
+
+        if params[:author]
+            @questions = Question.where(author_id: params[:author].to_i)
+            if @questions
+                render :index
+            else
+                render json: { errors: ["question not found"] }, status: 404
+            end
+        end
+        
         items_per_page = 10
         page = params[:page].to_i
         search_terms = params[:search].downcase.split(" ") if params[:search]
@@ -41,7 +51,6 @@ class Api::QuestionsController < ApplicationController
         end
 
         @questions = @order_query.limit(items_per_page).offset(items_per_page * (page - 1))
-        
 
         if @questions
             render :index
