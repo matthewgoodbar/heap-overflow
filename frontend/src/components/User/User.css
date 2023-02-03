@@ -2,3 +2,29 @@
 #user-show > * {
     padding-left: 16px;
 }
+
+#user-show > p {
+    color: gray;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+}
+
+.user-header > h2 {
+    flex-grow: 1;
+}
+
+.user-info > p {
+    color: gray;
+    text-align: end;
+}
+
+.user-tab-buttons {
+}
+
+.user-none-yet {
+    padding-top: 16px;
+    border-top: 1px solid lightgray;
+}

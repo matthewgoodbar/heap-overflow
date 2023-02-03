@@ -4,13 +4,13 @@ class Api::QuestionsController < ApplicationController
     wrap_parameters include: Question.attribute_names + ['authorId']
     
     def index
-
         if params[:author]
             @questions = Question.where(author_id: params[:author].to_i)
+            @search_query = @questions
             if @questions
-                render :index
+                return render :index
             else
-                render json: { errors: ["question not found"] }, status: 404
+                return render json: { errors: ["question not found"] }, status: 404
             end
         end
         

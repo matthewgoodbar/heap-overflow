@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { partialTimestamp } from "../../dateUtil";
 
-const QuestionPreview = ({ question }) => {
+const QuestionPreview = ({ question, hideAuthorTag }) => {
 
     const [timestamp, setTimestamp] = useState("");
     const [authorName, setAuthorName] = useState(question.author.username);
@@ -32,7 +32,9 @@ const QuestionPreview = ({ question }) => {
             <Link to={`/questions/${question.id}`}><h3>{question.title}</h3></Link>
             <p>{previewBody}</p>
             <p>{question.answerCount} answer{question.answerCount === 1 ? "" : "s"} | Asked at {timestamp}</p>
+            {!hideAuthorTag &&
             <p id="author-tag">Asked by <Link to={`/users/${question.authorId}`}>{authorName}</Link></p>
+            }
         </li>
     );
 };
