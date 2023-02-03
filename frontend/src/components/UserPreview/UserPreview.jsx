@@ -14,9 +14,14 @@ const UserPreview = ({ user }) => {
 
     return (
         <li className="user-preview">
-            <Link to={`users/${user.id}`}>{user.username}</Link>
-            <p>Member since {timestamp}</p>
-            <p>{user.questionCount} question(s) asked | {user.answerCount} answer(s) given</p>
+            <div className="user-preview-half-left">
+                <Link to={`users/${user.id}`}>{user.username}</Link>
+                <p>Member since {timestamp}</p>
+            </div>
+            <div className="user-preview-half-right">
+                <p>{user.questionCount} question(s) asked</p>
+                <p>{user.answerCount} answer(s) given</p>
+            </div>
         </li>
     );
 };
