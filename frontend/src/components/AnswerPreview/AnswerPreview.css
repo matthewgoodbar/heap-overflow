@@ -1,0 +1,16 @@
+.answer-preview {
+    border-top: solid lightgray 1px;
+    padding: 8px 0px 8px 0px;
+}
+
+.answer-preview-subtext {
+    color: gray;
+}
+
+.answer-preview > p > a {
+    text-decoration: none;
+}
+
+.answer-preview > a {
+    text-decoration: none;
+}

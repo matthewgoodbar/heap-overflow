@@ -5,6 +5,8 @@ import { clearQuestions, fetchQuestionsByAuthor } from "../../store/question";
 import { useParams } from "react-router";
 import { dateStamp } from "../../dateUtil";
 import QuestionPreview from "../QuestionPreview"
+import AnswerPreview from "../AnswerPreview/";
+import { fetchUser } from "../../store/user";
 
 const User = props => {
 
@@ -22,10 +24,12 @@ const User = props => {
 
     useEffect(() => {
         if (userId) {
-            dispatch(clearAnswers());
-            dispatch(clearQuestions());
-            dispatch(fetchAnswersByAuthor(userId));
-            dispatch(fetchQuestionsByAuthor(userId));
+            // dispatch(clearAnswers());
+            // dispatch(clearQuestions());
+            // dispatch(fetchAnswersByAuthor(userId));
+            // dispatch(fetchQuestionsByAuthor(userId));
+            dispatch(fetchUser(userId));
+            handleQuestionTab();
         }
     }, [userId]);
 
@@ -34,6 +38,22 @@ const User = props => {
             setTimestamp(dateStamp(user.createdAt));
         }
     }, [user]);
+
+    const handleQuestionTab = e => {
+        setTab("QUESTIONS");
+        dispatch(clearAnswers());
+        dispatch(clearQuestions());
+        dispatch(fetchQuestionsByAuthor(userId));
+    };
+
+    const handleAnswerTab = e => {
+        setTab("ANSWERS");
+        dispatch(clearAnswers());
+        dispatch(clearQuestions());
+        dispatch(fetchAnswersByAuthor(userId));
+    };
+
+    if (!user) return <div id="user-show" className="component-with-sidebar"></div>
     
     return (
         <div id="user-show" className="component-with-sidebar">
@@ -46,10 +66,10 @@ const User = props => {
             </div>
             <div className="user-tab-buttons">
                 <button className={tab === "QUESTIONS" ? "button-dark" : "button-light"}
-                onClick={e => setTab("QUESTIONS")}
+                onClick={handleQuestionTab}
                 >Questions</button>
                 <button className={tab === "ANSWERS" ? "button-dark" : "button-light"}
-                onClick={e => setTab("ANSWERS")}
+                onClick={handleAnswerTab}
                 >Answers</button>
             </div>
             {(tab === "QUESTIONS") &&
@@ -67,6 +87,16 @@ const User = props => {
                 {(tab === "QUESTIONS" && questions.length === 0) &&
                 <div className="user-none-yet">
                     <h3>This user has not asked any questions yet!</h3>
+                </div>
+                }
+                {(tab === "ANSWERS" && answers.length !== 0) &&
+                <ul>
+                    {answers.map(answer => <AnswerPreview key={answer.id} answer={answer} />)}
+                </ul>
+                }
+                {(tab === "ANSWERS" && answers.length === 0) &&
+                <div className="user-none-yet">
+                    <h3>This user has not provided any answers yet!</h3>
                 </div>
                 }
             </div>
