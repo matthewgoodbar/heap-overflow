@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.user-header > h2 {
+.user-header > h1 {
     flex-grow: 1;
 }
 

@@ -58,7 +58,7 @@ const User = props => {
     return (
         <div id="user-show" className="component-with-sidebar">
             <div className="user-header">
-                <h2>{user.username}</h2>
+                <h1>{user.username}</h1>
                 <div className="user-info">
                     <p>Member since {timestamp}</p>
                     <p>Total karma: {user.karma}</p>
