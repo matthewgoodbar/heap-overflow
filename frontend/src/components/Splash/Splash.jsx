@@ -21,6 +21,7 @@ const Splash = props => {
             <div className="bubble-right-container">
                 <div className="bubble-right-combined">
                     <div className="bubble-right">
+                    <p className="splash-text splash-bold">What is this place?</p>
                         <p className="splash-text">This is a forum where you can ask questions and<br/>
                             receive answers from dozens of users across the globe.<br/>
                         </p>
@@ -56,9 +57,8 @@ const Splash = props => {
                 <div className="bubble-left-combined">
                     <div className="bubble-left">
                         <p className="splash-text splash-bold">Waiting for the answers to come rolling in?</p>
-                        <p className="splash-text">Spend some time browsing other user's questions!<br/>
-                            You might just make someone's day,<br/>
-                            it's the least you can do!    
+                        <p className="splash-text">Spend some time browsing other user's questions,<br/>
+                            you might just make someone's day! 
                         </p>
                     </div>
                     <div className="bubble-left-tail"></div>

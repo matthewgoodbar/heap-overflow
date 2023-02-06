@@ -14,7 +14,7 @@ const Footer = props => {
                 <Link className="footer-link" to="/questions">Questions</Link>
             </div>
             <div className="footer-compartment footer-compartment-border">
-                <Link className="footer-link" to="/404">About</Link>
+                <Link className="footer-link" to="/about">About</Link>
                 <a className="footer-link" href="https://github.com/matthewgoodbar" target="_blank">Github</a>
                 <a className="footer-link" href="https://www.linkedin.com/in/matthew-goodbar-671a24169/" target="_blank">LinkedIn</a>
             </div>

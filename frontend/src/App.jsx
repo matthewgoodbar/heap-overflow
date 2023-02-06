@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Splash from "./components/Splash";
+import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import QuestionIndex from "./components/QuestionIndex";
@@ -21,6 +22,10 @@ const App = props => {
         <Switch>
           <Route exact path="/">
             <Splash />
+          </Route>
+          <Route path="/about">
+            <Sidebar />
+            <About />
           </Route>
           <Route path="/login">
             <LoginForm />
