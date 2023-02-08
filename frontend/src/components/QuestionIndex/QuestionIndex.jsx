@@ -15,7 +15,9 @@ const QuestionIndex = props => {
     const [search, setSearch] = useQueryParam('search', StringParam);
     const [order, setOrder] = useState("NEWEST");
     const questionCount = useSelector(state => state.questionCount.count);
-    const orderQuestions = (questionArray) => {
+    const questions = useSelector(state => orderQuestions(Object.values(state.questions)));
+    
+    function orderQuestions(questionArray) {
         if (questionArray) {
             switch (order) {
                 case "NEWEST":
@@ -29,8 +31,7 @@ const QuestionIndex = props => {
             }
         }
     };
-    const questions = useSelector(state => orderQuestions(Object.values(state.questions)));
-
+    
     useEffect(() => {
         if (search) {
             setPageHeader(`Search results for "${search}"`);
