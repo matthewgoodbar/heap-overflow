@@ -1,24 +1,7 @@
-# README
+# Heap Overflow
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Background
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Heap Overflow is a clone of the popular question & answer forum for developers, Stack Overflow.
+This clone uses a React.js + Redux frontend, and a Ruby on Rails backend. It utilizes a
+PostgreSQL database for the backend as well. 
