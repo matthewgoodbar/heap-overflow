@@ -22,7 +22,7 @@ const Sidebar = props => {
                 </div>
                 <div className="sidebar-logo-links">
                     <a href="https://www.linkedin.com/in/matthew-goodbar-671a24169/" target="_blank"><img className="linkedin-image-gray" alt="linkedin logo" /></a>
-                    <a href="https://github.com/matthewgoodbar" target="_blank"><img className="github-image-gray" alt="github logo" /></a>
+                    <a href="https://github.com/matthewgoodbar/heap-overflow" target="_blank"><img className="github-image-gray" alt="github logo" /></a>
                 </div>
             </div>
         </div>
