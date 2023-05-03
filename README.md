@@ -2,6 +2,8 @@
 
 [Live Link](https://heapoverflow-c0ft.onrender.com)
 
+<img alt="screenshot" href="../assets/screenshot.png" />
+
 ## Background
 
 Heap Overflow is a clone of the popular question & answer forum for developers, Stack Overflow.

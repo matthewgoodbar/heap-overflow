@@ -16,6 +16,16 @@
     top: 50px;
 }
 
+@media screen and (max-width: 600px) {
+    #sidebar {
+        width: 100px;
+    }
+
+    .sidebar-link-container {
+        top: 150px;
+    }
+}
+
 .sidebar-logo-links {
     display: flex;
     justify-content: space-evenly;

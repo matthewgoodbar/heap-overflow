@@ -38,6 +38,18 @@ header {
     justify-content: space-between;
 }
 
+@media screen and (max-width: 600px) {
+    header {
+        height: 130px;
+    }
+
+    #navigation {
+        height: 117px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
 #account-buttons {
     list-style: none;
     display: flex;

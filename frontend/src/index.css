@@ -7,6 +7,12 @@
     min-height: 90vh;
 }
 
+@media screen and (max-width: 600px) {
+    #page-content {
+        padding-top: 150px;
+    }
+}
+
 h1 {
     font-size: 30px;
 }
@@ -198,6 +204,7 @@ h3 {
 
 .qa-form-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: fit-content;
     margin: 8px 0px 0px 16px;
@@ -215,7 +222,7 @@ h3 {
 
 .qa-help-errors-box {
     color: rgb(75, 75, 75);
-    width: 450px;
+    max-width: 450px;
     margin-left: 16px;
     padding: 8px;
 }
